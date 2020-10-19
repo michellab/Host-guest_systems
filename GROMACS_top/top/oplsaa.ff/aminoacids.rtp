@@ -1,0 +1,3690 @@
+; New format introduced in Gromacs 3.1.4.
+; Dont use this forcefield with earlier versions.
+
+; This residue database includes new reparameterized sidechain dihedrals 
+; from Kaminski et al (JPCB, 2001) that override the default atomtype-based 
+; dihedrals. We use set 2 for SER and THR, set 2 for ASP, and the better 
+; separate dihedrals for LEU and VAL instead of the combined ones, since we
+; can specify them here without using introducing extra atom types.
+; (That was the reason they were combined in the paper).
+
+; NB: OPLS chargegroups are not strictly neutral, since we mainly
+; use them to optimize the neighborsearching. For accurate simulations
+; you should use PME.
+
+[ bondedtypes ]
+; Column 1 : default bondtype
+; Column 2 : default angletype
+; Column 3 : default proper dihedraltype
+; Column 4 : default improper dihedraltype
+; Column 5 : This controls the generation of dihedrals from the bonding.
+;            All possible dihedrals are generated automatically. A value of
+;            1 here means that all these are retained. A value of
+;            0 here requires generated dihedrals be removed if
+;              * there are any dihedrals on the same central atoms
+;                specified in the residue topology, or
+;              * there are other identical generated dihedrals
+;                sharing the same central atoms, or
+;              * there are other generated dihedrals sharing the
+;                same central bond that have fewer hydrogen atoms
+; Column 6 : number of neighbors to exclude from non-bonded interactions
+; Column 7 : 1 = generate 1,4 interactions between pairs of hydrogen atoms
+;            0 = do not generate such
+; Column 8 : 1 = remove proper dihedrals if found centered on the same
+;                bond as an improper dihedral
+;            0 = do not generate such
+; bonds  angles  dihedrals  impropers all_dihedrals nrexcl HH14 RemoveDih
+     1       1          3          1	    1         3      1     0
+
+[ ACE ]
+ [ atoms ]
+   CH3    opls_135   -0.180     1
+  HH31    opls_140    0.060     1
+  HH32    opls_140    0.060     1
+  HH33    opls_140    0.060     1
+     C    opls_235    0.500     2
+     O    opls_236   -0.500     2
+ [ bonds ]
+   CH3  HH31
+   CH3  HH32
+   CH3  HH33
+   CH3     C
+     C     O
+[ impropers ]
+  CH3    +N    C      O     improper_O_C_X_Y 
+
+[ ALA ]
+ [ atoms ] 
+     N    opls_238   -0.500     1
+     H    opls_241    0.300     1 
+    CA    opls_224B   0.140     1 
+    HA    opls_140    0.060     1 
+    CB    opls_135   -0.180     2 
+   HB1    opls_140    0.060     2 
+   HB2    opls_140    0.060     2 
+   HB3    opls_140    0.060     2 
+     C    opls_235    0.500     3
+     O    opls_236   -0.500     3
+ [ bonds ]
+     N     H
+     N    CA
+    CA    HA
+    CA    CB
+    CA     C
+    CB   HB1
+    CB   HB2
+    CB   HB3
+     C     O
+    -C     N
+ [ impropers ]
+    -C    CA     N     H    improper_Z_N_X_Y 
+    CA    +N     C     O    improper_O_C_X_Y 
+
+
+[ AIB ]
+ [ atoms ]
+     N    opls_238   -0.500     1
+     H    opls_241    0.300     1 
+    CA    opls_225B   0.200     1 
+   CB1    opls_135   -0.180     2 
+  HB11    opls_140    0.060     2 
+  HB12    opls_140    0.060     2 
+  HB13    opls_140    0.060     2 
+   CB2    opls_135   -0.180     3 
+  HB21    opls_140    0.060     3 
+  HB22    opls_140    0.060     3 
+  HB23    opls_140    0.060     3 
+     C    opls_235    0.500     4
+     O    opls_236   -0.500     4
+ [ bonds ]
+     N     H
+     N    CA
+    CA   CB1
+    CA   CB2
+    CA     C
+   CB1  HB11
+   CB1  HB12
+   CB1  HB13
+   CB2  HB21
+   CB2  HB22
+   CB2  HB23
+     C     O
+    -C     N
+ [ impropers ]
+    -C    CA     N     H    improper_Z_N_X_Y 
+    CA    +N     C     O    improper_O_C_X_Y 
+
+
+[ ARG ]
+ [ atoms ]
+     N    opls_238   -0.500     1       
+     H    opls_241    0.300     1
+    CA    opls_224B   0.140     1 
+    HA    opls_140    0.060     1 
+    CB    opls_136   -0.120     2 
+   HB1    opls_140    0.060     2 
+   HB2    opls_140    0.060     2 
+    CG    opls_308   -0.050     3 
+   HG1    opls_140    0.060     3 
+   HG2    opls_140    0.060     3 
+    CD    opls_307    0.190     4 
+   HD1    opls_140    0.060     4 
+   HD2    opls_140    0.060     4 
+    NE    opls_303   -0.700     5 
+    HE    opls_304    0.440     5 
+    CZ    opls_302    0.640	5 
+   NH1    opls_300   -0.800     6
+  HH11    opls_301    0.460     6
+  HH12    opls_301    0.460     6
+   NH2    opls_300   -0.800     7
+  HH21    opls_301    0.460     7
+  HH22    opls_301    0.460     7
+     C    opls_235    0.500     8
+     O    opls_236   -0.500     8
+ [ bonds ]
+     N     H
+     N    CA
+    CA    HA
+    CA    CB
+    CA     C
+    CB   HB1
+    CB   HB2
+    CB    CG
+    CG   HG1
+    CG   HG2
+    CG    CD
+    CD   HD1
+    CD   HD2
+    CD    NE
+    NE    HE
+    NE    CZ
+    CZ   NH1
+    CZ   NH2
+   NH1  HH11
+   NH1  HH12
+   NH2  HH21
+   NH2  HH22
+     C     O
+    -C     N
+ [ dihedrals ] ; override some with residue-specific ones
+     N    CA    CB    CG    dih_ARG_chi1_N_C_C_C
+    CG    CB    CA     C    dih_ARG_chi1_C_C_C_CO
+ [ impropers ]
+    -C    CA     N     H    improper_Z_N_X_Y 
+    CA    +N     C     O    improper_O_C_X_Y 
+    CD    CZ    NE    HE    improper_Z_N_X_Y 
+    NE   NH1    CZ   NH2    improper_O_C_X_Y  
+    CZ  HH11   NH1  HH12    improper_Z_N_X_Y  
+    CZ  HH21   NH2  HH22    improper_Z_N_X_Y  
+
+[ ARGN ]
+ [ atoms ]
+     N    opls_238   -0.500     1
+     H    opls_241    0.300     1
+    CA    opls_224B   0.140     1
+    HA    opls_140    0.060     1
+    CB    opls_136   -0.120     2
+   HB1    opls_140    0.060     2
+   HB2    opls_140    0.060     2
+    CG    opls_308   -0.050     3
+   HG1    opls_140    0.060     3
+   HG2    opls_140    0.060     3
+    CD    opls_748    0.040     4
+   HD1    opls_140    0.060     4
+   HD2    opls_140    0.060     4
+    NE    opls_749   -0.620     5
+    HE    opls_304    0.350     5; guessed charge
+    CZ    opls_752    0.550	6
+   NH1    opls_750   -0.785     6
+   HH1    opls_301    0.340     6; guessed charge  
+   NH2    opls_751   -0.785     7
+  HH21    opls_301    0.360     7; guessed charge  
+  HH22    opls_301    0.360     7; guessed charge
+     C    opls_235    0.500     8
+     O    opls_236   -0.500     8
+ [ bonds ]
+     N     H
+     N    CA
+    CA    HA
+    CA    CB
+    CA     C
+    CB   HB1
+    CB   HB2
+    CB    CG
+    CG   HG1
+    CG   HG2
+    CG    CD
+    CD   HD1
+    CD   HD2
+    CD    NE
+    NE    HE
+    NE    CZ
+    CZ   NH1
+    CZ   NH2
+   NH1   HH1
+   NH2  HH21
+   NH2  HH22
+     C     O
+    -C     N
+ [ impropers ]
+    -C    CA     N     H    improper_Z_N_X_Y 
+    CA    +N     C     O    improper_O_C_X_Y 
+    CD    CZ    NE    HE    improper_Z_N_X_Y 
+    NE   NH1    CZ   NH2    improper_O_C_X_Y 
+    CZ  HH21   NH2  HH22    improper_Z_N_X_Y 
+
+
+[ ASN ]
+ [ atoms ]
+     N    opls_238   -0.500     0
+     H    opls_241    0.300     0
+    CA    opls_224B   0.140     1
+    HA    opls_140    0.060     1
+    CB    opls_136   -0.120     2
+   HB1    opls_140    0.060     2
+   HB2    opls_140    0.060     2
+    CG    opls_235    0.500     3
+   OD1    opls_236   -0.500     3
+   ND2    opls_237   -0.760     4
+  HD21    opls_240    0.380     4
+  HD22    opls_240    0.380     4
+     C    opls_235    0.500     5
+     O    opls_236   -0.500     5
+ [ bonds ]
+     N     H
+     N    CA
+    CA    HA
+    CA    CB
+    CA     C
+    CB   HB1
+    CB   HB2
+    CB    CG
+    CG   OD1
+    CG   ND2
+   ND2  HD21
+   ND2  HD22
+     C     O
+    -C     N
+ [ dihedrals ] ; override some with residue-specific ones
+     N    CA    CB    CG     dih_ASN_chi1_N_C_C_C
+    CG    CB    CA     C     dih_ASN_chi1_C_C_C_CO
+    CA    CB    CG   ND2     dih_ASN_chi2_C_C_CO_N
+ [ impropers ]
+    -C    CA     N     H     improper_Z_N_X_Y 
+    CA    +N     C     O     improper_O_C_X_Y 
+    CB   ND2    CG   OD1     improper_O_C_X_Y   
+    CG  HD21   ND2  HD22     improper_Z_N_X_Y   
+
+[ ASP ]
+ [ atoms ]
+     N    opls_238   -0.500     1
+     H    opls_241    0.300     1
+    CA    opls_224B   0.140     1
+    HA    opls_140    0.060     1
+    CB    opls_274   -0.220     2
+   HB1    opls_140    0.060     2
+   HB2    opls_140    0.060     2
+    CG    opls_271    0.700     3
+   OD1    opls_272   -0.800     3
+   OD2    opls_272   -0.800     3
+     C    opls_235    0.500     4
+     O    opls_236   -0.500     4
+ [ bonds ]
+     N     H
+     N    CA
+    CA    HA
+    CA    CB
+    CA     C
+    CB   HB1
+    CB   HB2
+    CB    CG
+    CG   OD1
+    CG   OD2
+     C     O	
+    -C     N 
+ [ dihedrals ] ; override some with residue-specific ones
+     N    CA    CB    CG    dih_ASP_chi1_N_C_C_C
+    CG    CB    CA     C    dih_ASP_chi1_C_C_C_CO
+ [ impropers ]
+    -C    CA     N     H    improper_Z_N_X_Y 
+    CA    +N     C     O    improper_O_C_X_Y 
+    CB   OD1    CG   OD2    improper_O_C_X_Y     
+
+[ ASPH ]
+ [ atoms ]
+     N    opls_238   -0.500     0  
+     H    opls_241    0.300     0  
+    CA    opls_224B   0.140     1  
+    HA    opls_140    0.060     1  
+    CB    opls_136   -0.120     2
+   HB1    opls_140    0.060     2
+   HB2    opls_140    0.060     2
+    CG    opls_267    0.520     3
+   OD1    opls_269   -0.440     3
+   OD2    opls_268   -0.530     4
+   HD2    opls_270    0.450     4
+     C    opls_235    0.500     5
+     O    opls_236   -0.500     5
+ [ bonds ]
+     N     H
+     N    CA
+    CA    HA
+    CA    CB
+    CA     C
+    CB   HB1
+    CB   HB2
+    CB    CG
+    CG   OD1
+    CG   OD2
+   OD2   HD2
+     C     O
+    -C     N
+ [ dihedrals ] ; override some with residue-specific ones
+     N    CA    CB    CG    dih_ASP_chi1_N_C_C_C
+    CG    CB    CA     C    dih_ASP_chi1_C_C_C_CO
+    CB    CG   OD2   HD2    dih_sidechain_COOH_C_C_O_H
+   OD1    CG   OD2   HD2    dih_sidechain_COOH_O_C_O_H
+ [ impropers ]
+    -C    CA     N     H    improper_Z_N_X_Y 
+    CA    +N     C     O    improper_O_C_X_Y 
+    CB   OD1    CG   OD2    improper_O_C_X_Y     
+
+
+[ CYS2 ] ; aka CYX
+ [ atoms ]
+     N    opls_238   -0.500     1
+     H    opls_241    0.300     1
+    CA    opls_224B   0.140     1
+    HA    opls_140    0.060     1
+    CB    opls_214    0.0975    2
+   HB1    opls_140    0.060     2
+   HB2    opls_140    0.060     2
+    SG    opls_203   -0.2175    2
+     C    opls_235    0.500     3
+     O    opls_236   -0.500     3
+ [ bonds ]
+     N     H
+     N    CA
+    CA    HA
+    CA    CB
+    CA     C
+    CB   HB1
+    CB   HB2
+    CB    SG
+     C     O
+    -C     N
+ [ dihedrals ] ; override some of the typebased dihedrals
+     N    CA    CB    SG    dih_CYS_chi1_N_C_C_S
+     C    CA    CB    SG    dih_CYS_chi1_CO_C_C_S
+ [ impropers ]
+    -C    CA     N     H    improper_Z_N_X_Y 
+    CA    +N     C     O    improper_O_C_X_Y 
+
+[ CYSH ]
+ [ atoms ]
+     N    opls_238   -0.500     1
+     H    opls_241    0.300     1
+    CA    opls_224B   0.140     1
+    HA    opls_140    0.060     1
+    CB    opls_206    0.060     2
+   HB1    opls_140    0.060     2
+   HB2    opls_140    0.060     2
+    SG    opls_200   -0.335     3
+    HG    opls_204    0.155     3
+     C    opls_235    0.500     4
+     O    opls_236   -0.500     4
+ [ bonds ]
+     N     H
+     N    CA
+    CA    HA
+    CA    CB
+    CA     C
+    CB   HB1
+    CB   HB2
+    CB    SG
+    SG    HG
+     C     O
+    -C     N
+ [ dihedrals ] ; override some of the typebased dihedrals
+     N    CA    CB    SG    dih_CYS_chi1_N_C_C_S
+     C    CA    CB    SG    dih_CYS_chi1_CO_C_C_S
+ [ impropers ]
+    -C    CA     N     H    improper_Z_N_X_Y 
+    CA    +N     C     O    improper_O_C_X_Y 
+
+[ GLN ]
+ [ atoms ]
+     N    opls_238   -0.500     0
+     H    opls_241    0.300     0
+    CA    opls_224B   0.140     1
+    HA    opls_140    0.060     1
+    CB    opls_136   -0.120     2
+   HB1    opls_140    0.060     2
+   HB2    opls_140    0.060     2
+    CG    opls_136   -0.120     3
+   HG1    opls_140    0.060     3
+   HG2    opls_140    0.060     3
+    CD    opls_235    0.500     4
+   OE1    opls_236   -0.500     4
+   NE2    opls_237   -0.760     5
+  HE21    opls_240    0.380     5
+  HE22    opls_240    0.380     5
+     C    opls_235    0.500     6
+     O    opls_236   -0.500     6
+ [ bonds ]
+     N     H
+     N    CA
+    CA    HA
+    CA    CB
+    CA     C
+    CB   HB1
+    CB   HB2
+    CB    CG
+    CG   HG1
+    CG   HG2
+    CG    CD
+    CD   OE1
+    CD   NE2
+   NE2  HE21
+   NE2  HE22
+     C     O
+    -C     N
+ [ dihedrals ] ; override some of the typebased dihedrals
+     N    CA    CB    CG    dih_GLN_chi1_N_C_C_C
+    CG    CB    CA     C    dih_GLN_chi1_C_C_C_CO
+    CB    CG    CD   NE2    dih_GLN_chi3_C_C_CO_N
+ [ impropers ]
+    -C    CA     N     H    improper_Z_N_X_Y 
+    CA    +N     C     O    improper_O_C_X_Y 
+    CG   NE2    CD   OE1    improper_O_C_X_Y  
+    CD  HE21   NE2  HE22    improper_Z_N_X_Y        
+
+; Charged Glutamine
+; See. Patriksson et al. Int. J. Mass. Spectrom. 248 pp 124-135 (2006)
+[ QLN ]
+ [ atoms ]
+     N    opls_238   -0.500     0
+     H    opls_241    0.300     0
+    CA    opls_224B   0.140     1
+    HA    opls_140    0.060     1
+    CB    opls_136   -0.120     2
+   HB1    opls_140    0.060     2
+   HB2    opls_140    0.060     2
+    CG    opls_136    0.054     3
+   HG1    opls_140    0.131     3
+   HG2    opls_140    0.131     3
+    CD    opls_235    0.544     4
+   OE1    opls_154   -0.496     4
+   HE1    opls_155    0.498     4
+   NE2    opls_237   -0.720     5
+  HE21    opls_240    0.429     5
+  HE22    opls_240    0.429     5
+     C    opls_235    0.500     6
+     O    opls_236   -0.500     6
+ [ bonds ]
+     N     H
+     N    CA
+    CA    HA
+    CA    CB
+    CA     C
+    CB   HB1
+    CB   HB2
+    CB    CG
+    CG   HG1
+    CG   HG2
+    CG    CD
+    CD   OE1
+   OE1   HE1
+    CD   NE2
+   NE2  HE21
+   NE2  HE22
+     C     O
+    -C     N
+ [ dihedrals ] ; override some of the typebased dihedrals
+     N    CA    CB    CG    dih_GLN_chi1_N_C_C_C
+    CG    CB    CA     C    dih_GLN_chi1_C_C_C_CO
+    CB    CG    CD   NE2    dih_GLN_chi3_C_C_CO_N
+    CG	  CD	OE1  HE1    dih_GLN_chi4_C_C_O_H
+ [ impropers ]
+    -C    CA     N     H    improper_Z_N_X_Y 
+    CA    +N     C     O    improper_O_C_X_Y 
+    CG   NE2    CD   OE1    improper_O_C_X_Y  
+    CD  HE21   NE2  HE22    improper_Z_N_X_Y        
+    HE1  OE1    CD   NE2    improper_O_C_X_Y  
+
+
+[ GLU ]
+ [ atoms ]
+     N    opls_238   -0.500     1
+     H    opls_241    0.300     1
+    CA    opls_224B   0.140     1
+    HA    opls_140    0.060     1
+    CB    opls_136   -0.120     2
+   HB1    opls_140    0.060     2
+   HB2    opls_140    0.060     2
+    CG    opls_274   -0.220     3
+   HG1    opls_140    0.060     3
+   HG2    opls_140    0.060     3
+    CD    opls_271    0.700     4
+   OE1    opls_272   -0.800     4
+   OE2    opls_272   -0.800     4
+     C    opls_235    0.500     5
+     O    opls_236   -0.500     5
+ [ bonds ]
+     N     H
+     N    CA
+    CA    HA
+    CA    CB
+    CA     C
+    CB   HB1
+    CB   HB2
+    CB    CG
+    CG   HG1
+    CG   HG2
+    CG    CD
+    CD   OE1
+    CD   OE2
+     C     O
+    -C     N
+ [ dihedrals ] ; override some with residue-specific ones
+     N    CA    CB    CG    dih_GLU_chi1_N_C_C_C
+    CG    CB    CA     C    dih_GLU_chi1_C_C_C_CO
+ [ impropers ]
+    -C    CA     N     H    improper_Z_N_X_Y 
+    CA    +N     C     O    improper_O_C_X_Y 
+    CG   OE1    CD   OE2    improper_O_C_X_Y   
+
+
+[ PGLU ]
+ [ atoms ]
+     N    opls_238   -0.500     1
+     H    opls_241    0.300     1
+    CA    opls_224B   0.140     1
+    HA    opls_140    0.060     1
+    CB    opls_136   -0.120     2
+   HB1    opls_140    0.060     2
+   HB2    opls_140    0.060     2
+    CG    opls_274   -0.120     3
+   HG1    opls_140    0.060     3
+   HG2    opls_140    0.060     3
+    CD    opls_235    0.500     4
+    OE    opls_236   -0.500     4
+     C    opls_235    0.500     5
+     O    opls_236   -0.500     5
+ [ bonds ]
+     N     H
+     N    CA
+    CA    HA
+    CA    CB
+    CA     C
+    CB   HB1
+    CB   HB2
+    CB    CG
+    CG   HG1
+    CG   HG2
+    CG    CD
+    CD    OE
+    CD     N
+     C     O
+    -C     N
+ [ dihedrals ] ; override some with residue-specific ones
+     N    CA    CB    CG    dih_GLU_chi1_N_C_C_C
+    CG    CB    CA     C    dih_GLU_chi1_C_C_C_CO
+ [ impropers ]
+    -C    CA     N     H    improper_Z_N_X_Y 
+    CA    +N     C     O    improper_O_C_X_Y 
+;    CG   OE1    CD   OE2    improper_O_C_X_Y   
+
+
+[ GLUH ]
+ [ atoms ]
+     N    opls_238   -0.500     1
+     H    opls_241    0.300     1
+    CA    opls_224B   0.140     1
+    HA    opls_140    0.060     1
+    CB    opls_136   -0.120     2
+   HB1    opls_140    0.060     2
+   HB2    opls_140    0.060     2
+    CG    opls_136   -0.120     3
+   HG1    opls_140    0.060     3
+   HG2    opls_140    0.060     3
+    CD    opls_267    0.520     4
+   OE1    opls_269   -0.440     4
+   OE2    opls_268   -0.530     5
+   HE2    opls_270    0.450     5
+     C    opls_235    0.500     6
+     O    opls_236   -0.500     6
+ [ bonds ]
+     N     H
+     N    CA
+    CA    HA
+    CA    CB
+    CA     C
+    CB   HB1
+    CB   HB2
+    CB    CG
+    CG   HG1
+    CG   HG2
+    CG    CD
+    CD   OE1
+    CD   OE2
+   OE2   HE2
+     C     O
+    -C     N
+ [ dihedrals ] ; override some with residue-specific ones
+     N    CA    CB    CG    dih_GLU_chi1_N_C_C_C
+    CG    CB    CA     C    dih_GLU_chi1_C_C_C_CO
+    CG    CD   OE2   HE2    dih_sidechain_COOH_C_C_O_H
+   OE1    CD   OE2   HE2    dih_sidechain_COOH_O_C_O_H
+ [ impropers ]
+    -C    CA     N     H    improper_Z_N_X_Y 
+    CA    +N     C     O    improper_O_C_X_Y 
+    CG   OE1    CD   OE2    improper_O_C_X_Y   
+
+
+[ GLY ]
+ [ atoms ]
+     N    opls_238   -0.500     1
+     H    opls_241    0.300     1
+    CA    opls_223B   0.080     1
+   HA1    opls_140    0.060     1
+   HA2    opls_140    0.060     1
+     C    opls_235    0.500     2
+     O    opls_236   -0.500     2
+ [ bonds ]
+     N     H
+     N    CA
+    CA   HA1
+    CA   HA2
+    CA     C
+     C     O
+    -C     N
+ [ impropers ]
+    -C    CA     N     H    improper_Z_N_X_Y 
+    CA    +N     C     O    improper_O_C_X_Y 
+
+
+[ HISD ] 
+ [ atoms ]
+     N    opls_238   -0.500     1
+     H    opls_241    0.300     1
+    CA    opls_224B   0.140     1
+    HA    opls_140    0.060     1
+    CB    opls_505   -0.297     2 
+   HB1    opls_140    0.060     2 
+   HB2    opls_140    0.060     2 
+    CG    opls_508   -0.261     3
+   ND1    opls_503   -0.291     4
+   HD1    opls_504    0.326     4
+   CD2    opls_507    0.504     5
+   HD2    opls_146    0.183     5
+   CE1    opls_506    0.182     6
+   HE1    opls_146    0.098     6
+   NE2    opls_511   -0.564     7
+     C    opls_235    0.500     8
+     O    opls_236   -0.500     8
+ [ bonds ]
+     N     H
+     N    CA
+    CA    HA
+    CA    CB
+    CA     C
+    CB   HB1
+    CB   HB2
+    CB    CG
+    CG   ND1
+    CG   CD2
+   ND1   HD1
+   ND1   CE1
+   CD2   HD2
+   CD2   NE2
+   CE1   HE1
+   CE1   NE2
+     C     O
+    -C     N
+ [ dihedrals ] ; override some with residue-specific ones
+     N    CA    CB    CG    dih_HIS_chi1_N_C_C_C
+    CG    CB    CA     C    dih_HIS_chi1_C_C_C_CO
+    CA    CB    CG   ND1    dih_HIS_chi2_C_C_C_N
+ [ impropers ]
+    -C    CA     N     H    improper_Z_N_X_Y  
+    CA    +N     C     O    improper_O_C_X_Y  
+   ND1   CD2    CG    CB    improper_Z_CA_X_Y 
+    CG   CE1   ND1   HD1    improper_Z_N_X_Y  
+    CG   NE2   CD2   HD2    improper_Z_CA_X_Y 
+   ND1   NE2   CE1   HE1    improper_Z_CA_X_Y 
+
+
+[ HIS1 ]   ; Identical to HISD
+ [ atoms ]
+     N    opls_238   -0.500     1
+     H    opls_241    0.300     1
+    CA    opls_224B   0.140     1
+    HA    opls_140    0.060     1
+    CB    opls_505   -0.297     2 
+   HB1    opls_140    0.060     2 
+   HB2    opls_140    0.060     2 
+    CG    opls_508   -0.261     3
+   ND1    opls_503   -0.291     4
+   HD1    opls_504    0.326     4
+   CD2    opls_507    0.504     5
+   HD2    opls_146    0.183     5
+   CE1    opls_506    0.182     6
+   HE1    opls_146    0.098     6
+   NE2    opls_511   -0.564     7
+     C    opls_235    0.500     8
+     O    opls_236   -0.500     8
+ [ bonds ]
+     N     H
+     N    CA
+    CA    HA
+    CA    CB
+    CA     C
+    CB   HB1
+    CB   HB2
+    CB    CG
+    CG   ND1
+    CG   CD2
+   ND1   HD1
+   ND1   CE1
+   CD2   HD2
+   CD2   NE2
+   CE1   HE1
+   CE1   NE2
+     C     O
+    -C     N
+ [ dihedrals ] ; override some with residue-specific ones
+     N    CA    CB    CG    dih_HIS_chi1_N_C_C_C
+    CG    CB    CA     C    dih_HIS_chi1_C_C_C_CO
+    CA    CB    CG   ND1    dih_HIS_chi2_C_C_C_N
+ [ impropers ]
+    -C    CA     N     H    improper_Z_N_X_Y  
+    CA    +N     C     O    improper_O_C_X_Y  
+   ND1   CD2    CG    CB    improper_Z_CA_X_Y 
+    CG   CE1   ND1   HD1    improper_Z_N_X_Y  
+    CG   NE2   CD2   HD2    improper_Z_CA_X_Y 
+   ND1   NE2   CE1   HE1    improper_Z_CA_X_Y 
+
+
+[ HISE ] 
+ [ atoms ]
+     N    opls_238   -0.500     1
+     H    opls_241    0.300     1
+    CA    opls_224B   0.140     1
+    HA    opls_140    0.060     1
+    CB    opls_505   -0.297     2
+   HB1    opls_140    0.060	2
+   HB2    opls_140    0.060	2
+    CG    opls_507    0.504     3
+   ND1    opls_511   -0.564     3
+   CD2    opls_508   -0.261     4
+   HD2    opls_146    0.183     4 
+   CE1    opls_506    0.182     5
+   HE1    opls_146    0.098     5
+   NE2    opls_503   -0.291     6
+   HE2    opls_504    0.326     6
+     C    opls_235    0.500     7
+     O    opls_236   -0.500     7
+ [ bonds ]
+     N     H
+     N    CA
+    CA    HA
+    CA    CB
+    CA     C
+    CB   HB1
+    CB   HB2
+    CB    CG
+    CG   ND1
+    CG   CD2
+   ND1   CE1
+   CD2   HD2
+   CD2   NE2
+   CE1   HE1
+   CE1   NE2
+   NE2   HE2
+     C     O
+    -C     N
+ [ dihedrals ] ; override some with residue-specific ones
+     N    CA    CB    CG    dih_HIS_chi1_N_C_C_C
+    CG    CB    CA     C    dih_HIS_chi1_C_C_C_CO
+    CA    CB    CG   ND1    dih_HIS_chi2_C_C_C_N
+ [ impropers ]
+    -C    CA     N     H    improper_Z_N_X_Y  
+    CA    +N     C     O    improper_O_C_X_Y  
+   CE1   CD2   NE2   HE2    improper_Z_N_X_Y  
+    CG   NE2   CD2   HD2    improper_Z_CA_X_Y 
+   ND1   NE2   CE1   HE1    improper_Z_CA_X_Y        
+   ND1   CD2   CG     CB    improper_Z_CA_X_Y     
+
+
+[ HISH ]  ; also known as HISP (or HIS+)
+ [ atoms ]
+     N    opls_238   -0.500     1
+     H    opls_241    0.300     1
+    CA    opls_224B   0.140     1
+    HA    opls_140    0.060     1
+    CB    opls_505   -0.005     2 
+   HB1    opls_140    0.060     2
+   HB2    opls_140    0.060     2
+    CG    opls_510    0.215     3 
+   ND1    opls_512   -0.540     4
+   HD1    opls_513    0.460     4 
+   CD2    opls_510    0.215     5 
+   HD2    opls_146    0.115     5 
+   CE1    opls_509    0.385     6 
+   HE1    opls_146    0.115     6 
+   NE2    opls_512   -0.540     7 
+   HE2    opls_513    0.460     7 
+     C    opls_235    0.500     8
+     O    opls_236   -0.500     8
+ [ bonds ]
+     N     H
+     N    CA
+    CA    HA
+    CA    CB
+    CA     C
+    CB   HB1
+    CB   HB2
+    CB    CG
+    CG   ND1
+    CG   CD2
+   ND1   HD1
+   ND1   CE1
+   CD2   HD2
+   CD2   NE2
+   CE1   HE1
+   CE1   NE2
+   NE2   HE2
+     C     O
+    -C     N
+ [ dihedrals ] ; override some with residue-specific ones
+     N    CA    CB    CG    dih_HIP_chi1_N_C_C_C
+    CG    CB    CA     C    dih_HIP_chi1_C_C_C_CO
+ [ impropers ]
+    -C    CA     N     H    improper_Z_N_X_Y  
+    CA    +N     C     O    improper_O_C_X_Y  
+    CG   CE1   ND1   HD1    improper_Z_N_X_Y       
+   CE1   CD2   NE2   HE2    improper_Z_N_X_Y  
+    CG   NE2   CD2   HD2    improper_Z_CA_X_Y 
+   ND1   NE2   CE1   HE1    improper_Z_CA_X_Y 
+   ND1   CD2    CG    CB    improper_Z_CA_X_Y     
+
+
+[ HOH ] 
+; We believe SPC has slightly better properties than TIP3P...
+ [ atoms ]
+    OW   opls_116   -0.82      0
+   HW1   opls_117    0.41      0
+   HW2   opls_117    0.41      0
+ [ bonds ]
+    OW   HW1
+    OW   HW2
+
+[ HO4 ] 
+; TIP4P
+ [ atoms ]
+    OW   opls_113    0.00      0
+   HW1   opls_114    0.52      0
+   HW2   opls_114    0.52      0
+    MW   opls_115   -1.04      0
+ [ bonds ]
+    OW   HW1
+    OW   HW2
+
+[ HO5 ] 
+; TIP5P
+ [ atoms ]
+    OW   opls_118    0.00      0
+   HW1   opls_119    0.248     0
+   HW2   opls_119    0.248     0
+   LP1   opls_120   -0.248     0
+   LP2   opls_120   -0.248     0
+ [ bonds ]
+    OW   HW1
+    OW   HW2
+
+[ ILE ]
+ [ atoms ]
+     N    opls_238   -0.500     1
+     H    opls_241    0.300     1
+    CA    opls_224B   0.140     1
+    HA    opls_140    0.060     1
+    CB    opls_137   -0.060     2
+    HB    opls_140    0.060     2
+   CG1    opls_136   -0.120     3
+  HG11    opls_140    0.060     3
+  HG12    opls_140    0.060     3
+   CG2    opls_135   -0.180     4
+  HG21    opls_140    0.060     4
+  HG22    opls_140    0.060     4
+  HG23    opls_140    0.060     4
+    CD    opls_135   -0.180     5
+   HD1    opls_140    0.060     5
+   HD2    opls_140    0.060     5
+   HD3    opls_140    0.060     5
+     C    opls_235    0.500     6
+     O    opls_236   -0.500     6
+ [ bonds ]
+     N     H
+     N    CA
+    CA    HA
+    CA    CB
+    CA     C
+    CB    HB
+    CB   CG1
+    CB   CG2
+   CG1  HG11
+   CG1  HG12
+   CG1    CD
+   CG2  HG21
+   CG2  HG22
+   CG2  HG23
+    CD   HD1
+    CD   HD2
+    CD   HD3
+     C     O
+    -C     N
+ [ dihedrals ] ; override some with residue-specific ones
+     N    CA    CB   CG1    dih_ILE_chi1_N_C_C_C
+     N    CA    CB   CG2    dih_ILE_chi1_N_C_C_C
+   CG1    CB    CA     C    dih_ILE_chi1_C_C_C_CO
+   CG2    CB    CA     C    dih_ILE_chi1_C_C_C_CO
+ [ impropers ]
+    -C    CA     N     H    improper_Z_N_X_Y 
+    CA    +N     C     O    improper_O_C_X_Y 
+
+[ LEU ]
+ [ atoms ]
+     N    opls_238   -0.500     1
+     H    opls_241    0.300     1
+    CA    opls_224B   0.140     1
+    HA    opls_140    0.060     1
+    CB    opls_136   -0.120     2
+   HB1    opls_140    0.060     2
+   HB2    opls_140    0.060     2
+    CG    opls_137   -0.060     3
+    HG    opls_140    0.060     3
+   CD1    opls_135   -0.180     4
+  HD11    opls_140    0.060     4
+  HD12    opls_140    0.060     4
+  HD13    opls_140    0.060     4
+   CD2    opls_135   -0.180     5
+  HD21    opls_140    0.060     5
+  HD22    opls_140    0.060     5
+  HD23    opls_140    0.060     5
+     C    opls_235    0.500     6
+     O    opls_236   -0.500     6
+ [ bonds ]
+     N     H
+     N    CA
+    CA    HA
+    CA    CB
+    CA     C
+    CB   HB1
+    CB   HB2
+    CB    CG
+    CG    HG
+    CG   CD1
+    CG   CD2
+   CD1  HD11
+   CD1  HD12
+   CD1  HD13
+   CD2  HD21
+   CD2  HD22
+   CD2  HD23
+     C     O
+    -C     N
+ [ dihedrals ] ; override some with residue-specific ones
+     N    CA    CB    CG    dih_LEU_chi1_N_C_C_C
+    CG    CB    CA     C    dih_LEU_chi1_C_C_C_CO
+ [ impropers ]
+    -C    CA     N     H    improper_Z_N_X_Y 
+    CA    +N     C     O    improper_O_C_X_Y 
+
+[ LYS ]
+ [ atoms ]
+     N    opls_238   -0.500     1
+     H    opls_241    0.300     1
+    CA    opls_224B   0.140     1
+    HA    opls_140    0.060     1
+    CB    opls_136   -0.120     2
+   HB1    opls_140    0.060     2
+   HB2    opls_140    0.060     2
+    CG    opls_136   -0.120     3
+   HG1    opls_140    0.060     3
+   HG2    opls_140    0.060     3
+    CD    opls_136   -0.120     4
+   HD1    opls_140    0.060     4
+   HD2    opls_140    0.060     4
+    CE    opls_906    0.060     5
+   HE1    opls_911    0.060     5
+   HE2    opls_911    0.060     5
+    NZ    opls_900   -0.900     6 
+   HZ1    opls_909    0.360     6 
+   HZ2    opls_909    0.360     6 
+     C    opls_235    0.500     7
+     O    opls_236   -0.500     7
+ [ bonds ]
+     N     H
+     N    CA
+    CA    HA
+    CA    CB
+    CA     C
+    CB   HB1
+    CB   HB2
+    CB    CG
+    CG   HG1
+    CG   HG2
+    CG    CD
+    CD   HD1
+    CD   HD2
+    CD    CE
+    CE   HE1
+    CE   HE2
+    CE    NZ
+    NZ   HZ1
+    NZ   HZ2
+     C     O
+    -C     N
+ [ dihedrals ] ; override some with residue-specific ones
+     N    CA    CB    CG    dih_LYS_chi1_N_C_C_C
+    CG    CB    CA     C    dih_LYS_chi1_C_C_C_CO
+    CD    CE    NZ   HZ1    dih_LYS_chi5_C_C_N_H
+    CD    CE    NZ   HZ2    dih_LYS_chi5_C_C_N_H
+ [ impropers ]
+    -C    CA     N     H    improper_Z_N_X_Y 
+    CA    +N     C     O    improper_O_C_X_Y 
+
+
+[ LYSH ]
+ [ atoms ]
+     N    opls_238   -0.500     1
+     H    opls_241    0.300     1
+    CA    opls_224B   0.140     1
+    HA    opls_140    0.060     1
+    CB    opls_136   -0.120     2
+   HB1    opls_140    0.060     2
+   HB2    opls_140    0.060     2
+    CG    opls_136   -0.120     3
+   HG1    opls_140    0.060     3
+   HG2    opls_140    0.060     3
+    CD    opls_136   -0.120     4
+   HD1    opls_140    0.060     4
+   HD2    opls_140    0.060     4
+    CE    opls_292    0.190     5
+   HE1    opls_140    0.060     5
+   HE2    opls_140    0.060     5
+    NZ    opls_287   -0.300     6
+   HZ1    opls_290    0.330     6
+   HZ2    opls_290    0.330     6
+   HZ3    opls_290    0.330     6
+     C    opls_235    0.500     7
+     O    opls_236   -0.500     7
+ [ bonds ]
+     N     H
+     N    CA
+    CA    HA
+    CA    CB
+    CA     C
+    CB   HB1
+    CB   HB2
+    CB    CG
+    CG   HG1
+    CG   HG2
+    CG    CD
+    CD   HD1
+    CD   HD2
+    CD    CE
+    CE   HE1
+    CE   HE2
+    CE    NZ
+    NZ   HZ1
+    NZ   HZ2
+    NZ   HZ3
+     C     O
+    -C     N
+ [ dihedrals ] ; override some with residue-specific ones
+     N    CA    CB    CG    dih_LYS_chi1_N_C_C_C
+    CG    CB    CA     C    dih_LYS_chi1_C_C_C_CO
+    CD    CE    NZ   HZ1    dih_LYS_chi5_C_C_N_H
+    CD    CE    NZ   HZ2    dih_LYS_chi5_C_C_N_H
+    CD    CE    NZ   HZ3    dih_LYS_chi5_C_C_N_H
+ [ impropers ]
+    -C    CA     N     H    improper_Z_N_X_Y 
+    CA    +N     C     O    improper_O_C_X_Y 
+
+
+[ MET ]
+ [ atoms ]
+     N    opls_238   -0.500     1
+     H    opls_241    0.300     1
+    CA    opls_224B   0.140     1
+    HA    opls_140    0.060     1
+    CB    opls_136   -0.120     2
+   HB1    opls_140    0.060     2
+   HB2    opls_140    0.060     2
+    CG    opls_210    0.048     3
+   HG1    opls_140    0.060     3
+   HG2    opls_140    0.060     3
+    SD    opls_202   -0.335     4
+    CE    opls_209   -0.013     5
+   HE1    opls_140    0.060     5
+   HE2    opls_140    0.060     5
+   HE3    opls_140    0.060     5
+     C    opls_235    0.500     6
+     O    opls_236   -0.500     6
+ [ bonds ]
+     N     H
+     N    CA
+    CA    HA
+    CA    CB
+    CA     C
+    CB   HB1
+    CB   HB2
+    CB    CG
+    CG   HG1
+    CG   HG2
+    CG    SD
+    SD    CE
+    CE   HE1
+    CE   HE2
+    CE   HE3
+     C     O
+    -C     N
+ [ dihedrals ] ; override some with residue-specific ones
+     N    CA    CB    CG    dih_MET_chi1_N_C_C_C
+    CG    CB    CA     C    dih_MET_chi1_C_C_C_CO
+  [ impropers ]
+    -C    CA     N     H    improper_Z_N_X_Y 
+    CA    +N     C     O    improper_O_C_X_Y 
+
+
+[ NAC ] ; metylamide, a.k.a NMA.
+ [ atoms ]
+     N    opls_238   -0.500     1
+     H    opls_241    0.300     1
+   CH3    opls_242    0.020     2
+  HH31    opls_140    0.060     2
+  HH32    opls_140    0.060     2
+  HH33    opls_140    0.060     2
+ [ bonds ]
+     N     H
+     N   CH3
+   CH3  HH31
+   CH3  HH32
+   CH3  HH33
+    -C     N
+ [ impropers ]
+    -C    CH3     N    H      improper_Z_N_X_Y   
+ 
+
+[ NH2 ]
+ [ atoms ]
+     N     opls_237  -0.760	1
+    H1     opls_240   0.380     1
+    H2     opls_240   0.380     1
+ [ bonds ]
+    -C     N
+     N	   H1
+     N     H2
+ [ impropers ]
+    -C     H1    N      H2       improper_Z_N_X_Y 
+
+[ NHE ] 
+; same as NH2
+ [ atoms ]
+     N     opls_237  -0.760	1
+    H1     opls_240   0.380     1
+    H2     opls_240   0.380     1
+ [ bonds ]
+    -C     N
+     N	   H1
+     N     H2
+ [ impropers ]
+    -C     H1     N     H2       improper_Z_N_X_Y 
+ 
+[ PHE ]
+ [ atoms ]
+     N    opls_238   -0.500     1
+     H    opls_241    0.300     1
+    CA    opls_224B   0.140     1
+    HA    opls_140    0.060     1
+    CB    opls_149   -0.005     2
+   HB1    opls_140    0.060     2
+   HB2    opls_140    0.060     2
+    CG    opls_145   -0.115     2
+   CD1    opls_145   -0.115     3
+   HD1    opls_146    0.115     3
+   CD2    opls_145   -0.115     4
+   HD2    opls_146    0.115     4
+   CE1    opls_145   -0.115     5
+   HE1    opls_146    0.115     5
+   CE2    opls_145   -0.115     6
+   HE2    opls_146    0.115     6 
+    CZ    opls_145   -0.115     7 
+    HZ    opls_146    0.115     7
+     C    opls_235    0.500     8
+     O    opls_236   -0.500     8
+ [ bonds ]
+     N     H
+     N    CA
+    CA    HA
+    CA    CB
+    CA     C
+    CB   HB1
+    CB   HB2
+    CB    CG
+    CG   CD1
+    CG   CD2
+   CD1   HD1
+   CD1   CE1
+   CD2   HD2
+   CD2   CE2
+   CE1   HE1
+   CE1    CZ
+   CE2   HE2
+   CE2    CZ
+    CZ    HZ
+     C     O
+    -C     N
+ [ impropers ]
+    -C    CA     N     H    improper_Z_N_X_Y  
+    CA    +N     C     O    improper_O_C_X_Y  
+    CG   CE2   CD2   HD2    improper_Z_CA_X_Y 
+   CD2    CZ   CE2   HE2    improper_Z_CA_X_Y 
+   CE1   CE2    CZ    HZ    improper_Z_CA_X_Y 
+   CD1    CZ   CE1   HE1    improper_Z_CA_X_Y 
+    CG   CE1   CD1   HD1    improper_Z_CA_X_Y 
+   CD1   CD2    CG    CB    improper_Z_CA_X_Y     
+
+
+[ PRO ]
+ [ atoms ]
+     N    opls_239   -0.140     1
+    CA    opls_246    0.010     1
+    HA    opls_140    0.060     1
+    CB    opls_136   -0.120     2
+   HB1    opls_140    0.060     2
+   HB2    opls_140    0.060     2
+    CG    opls_136   -0.120     3
+   HG1    opls_140    0.060     3
+   HG2    opls_140    0.060     3
+    CD    opls_245   -0.050     4
+   HD1    opls_140    0.060     4
+   HD2    opls_140    0.060     4
+     C    opls_235    0.500     5
+     O    opls_236   -0.500     5
+ [ bonds ]
+     N    CA
+    CA    HA
+    CA    CB
+    CA     C
+    CB   HB1
+    CB   HB2
+    CB    CG
+    CG   HG1
+    CG   HG2
+    CG    CD
+    CD   HD1
+    CD   HD2
+    CD     N
+     C     O
+    -C     N
+ [ impropers ]
+    -C    CA     N    CD    improper_Z_N_X_Y 
+    CA    +N     C     O    improper_O_C_X_Y 
+     
+
+[ SER ]
+ [ atoms ]
+     N    opls_238   -0.500     1
+     H    opls_241    0.300     1
+    CA    opls_224B   0.140     1
+    HA    opls_140    0.060     1
+    CB    opls_157    0.145     2
+   HB1    opls_140    0.060     2
+   HB2    opls_140    0.060     2
+    OG    opls_154   -0.683     3
+    HG    opls_155    0.418     3
+     C    opls_235    0.500     4
+     O    opls_236   -0.500     4
+ [ bonds ]
+     N     H
+     N    CA
+    CA    HA
+    CA    CB
+    CA     C
+    CB   HB1
+    CB   HB2
+    CB    OG
+    OG    HG
+     C     O
+    -C     N
+ [ dihedrals ] ; override some of the typebased dihedrals
+     N    CA    CB    OG    dih_SER_THR_chi1_N_C_C_O
+     C    CA    CB    OG    dih_SER_THR_chi1_CO_C_C_O
+    CA    CB    OG    HG    dih_SER_THR_chi2_C_C_OH_HO
+ [ impropers ]
+    -C    CA     N     H    improper_Z_N_X_Y 
+    CA    +N     C     O    improper_O_C_X_Y 
+
+
+[ THR ]
+ [ atoms ]
+     N    opls_238   -0.500     1
+     H    opls_241    0.300     1
+    CA    opls_224B   0.140     1
+    HA    opls_140    0.060     1
+    CB    opls_158    0.205     2
+    HB    opls_140    0.060     2
+   OG1    opls_154   -0.683     2
+   HG1    opls_155    0.418     2
+   CG2    opls_135   -0.180     3
+  HG21    opls_140    0.060     3
+  HG22    opls_140    0.060     3
+  HG23    opls_140    0.060     3
+     C    opls_235    0.500     4
+     O    opls_236   -0.500     4
+ [ bonds ]
+     N     H
+     N    CA
+    CA    HA
+    CA    CB
+    CA     C
+    CB    HB
+    CB   OG1
+    CB   CG2
+   OG1   HG1
+   CG2  HG21
+   CG2  HG22
+   CG2  HG23
+     C     O
+    -C     N
+ [ dihedrals ] ; override some of the typebased dihedrals
+     N    CA    CB   OG1    dih_SER_THR_chi1_N_C_C_O
+     C    CA    CB   OG1    dih_SER_THR_chi1_CO_C_C_O
+    CA    CB   OG1   HG1    dih_SER_THR_chi2_C_C_OH_HO
+ [ impropers ]
+    -C    CA     N     H    improper_Z_N_X_Y 
+    CA    +N     C     O    improper_O_C_X_Y 
+
+  
+[ TRP ]
+ [ atoms ]
+     N    opls_238   -0.500     1
+     H    opls_241    0.300     1
+    CA    opls_224B   0.140     1
+    HA    opls_140    0.060     1
+    CB    opls_136   -0.120     2
+   HB1    opls_140    0.060     2
+   HB2    opls_140    0.060     2
+    CG    opls_500    0.075     3  
+   CD1    opls_514   -0.115     4 
+   HD1    opls_146    0.115     4  
+   CD2    opls_501   -0.055     5
+   NE1    opls_503   -0.570     6  
+   HE1    opls_504    0.420     6  
+   CE2    opls_502    0.130     6
+   CE3    opls_145   -0.115     7  
+   HE3    opls_146    0.115     7  
+   CZ2    opls_145   -0.115     8  
+   HZ2    opls_146    0.115     8   
+   CZ3    opls_145   -0.115     9  
+   HZ3    opls_146    0.115     9  
+   CH2    opls_145   -0.115     10  
+   HH2    opls_146    0.115     10 
+     C    opls_235    0.500     11
+     O    opls_236   -0.500     11
+ [ bonds ]
+     N     H
+     N    CA
+    CA    HA
+    CA    CB
+    CA     C
+    CB   HB1
+    CB   HB2
+    CB    CG
+    CG   CD1
+    CG   CD2
+   CD1   HD1
+   CD1   NE1
+   CD2   CE2
+   CD2   CE3
+   NE1   HE1
+   NE1   CE2
+   CE2   CZ2
+   CE3   HE3
+   CE3   CZ3
+   CZ2   HZ2
+   CZ2   CH2
+   CZ3   HZ3
+   CZ3   CH2
+   CH2   HH2
+     C     O
+    -C     N
+ [ dihedrals ] ; override some with residue-specific ones
+     N    CA    CB    CG    dih_TRP_chi1_N_C_C_C
+    CG    CB    CA     C    dih_TRP_chi1_C_C_C_CO
+ [ impropers ]
+    -C    CA     N     H    improper_Z_N_X_Y  
+    CA    +N     C     O    improper_O_C_X_Y  
+   CD1   CE2   NE1   HE1    improper_Z_N_X_Y   
+   CE2   CH2   CZ2   HZ2    improper_Z_CA_X_Y 
+   CZ2   CZ3   CH2   HH2    improper_Z_CA_X_Y 
+   CH2   CE3   CZ3   HZ3    improper_Z_CA_X_Y 
+   CZ3   CD2   CE3   HE3    improper_Z_CA_X_Y 
+    CG   NE1   CD1   HD1    improper_Z_CA_X_Y 
+   CD1   CD2    CG    CB    improper_Z_CA_X_Y   
+
+
+[ TYR ]
+ [ atoms ]
+     N    opls_238   -0.500     1
+     H    opls_241    0.300     1
+    CA    opls_224B   0.140     1
+    HA    opls_140    0.060     1
+    CB    opls_149   -0.005     2
+   HB1    opls_140    0.060     2
+   HB2    opls_140    0.060     2
+    CG    opls_145   -0.115     2
+   CD1    opls_145   -0.115     4
+   HD1    opls_146    0.115     4
+   CD2    opls_145   -0.115     5
+   HD2    opls_146    0.115     5
+   CE1    opls_145   -0.115     6
+   HE1    opls_146    0.115     6
+   CE2    opls_145   -0.115     7
+   HE2    opls_146    0.115     7
+    CZ    opls_166    0.150     8
+    OH    opls_167   -0.585     8
+    HH    opls_168    0.435     8
+     C    opls_235    0.500     9
+     O    opls_236   -0.500     9
+ [ bonds ]
+     N     H
+     N    CA
+    CA    HA
+    CA    CB
+    CA     C
+    CB   HB1
+    CB   HB2
+    CB    CG
+    CG   CD1
+    CG   CD2
+   CD1   HD1
+   CD1   CE1
+   CD2   HD2
+   CD2   CE2
+   CE1   HE1
+   CE1    CZ
+   CE2   HE2
+   CE2    CZ
+    CZ    OH
+    OH    HH
+     C     O
+    -C     N
+ [ impropers ]
+    -C    CA     N     H    improper_Z_N_X_Y  
+    CA    +N     C     O    improper_O_C_X_Y  
+    CG   CE2   CD2   HD2    improper_Z_CA_X_Y 
+   CD2    CZ   CE2   HE2    improper_Z_CA_X_Y 
+   CD1    CZ   CE1   HE1    improper_Z_CA_X_Y 
+    CG   CE1   CD1   HD1    improper_Z_CA_X_Y 
+   CD1   CD2    CG    CB    improper_Z_CA_X_Y 
+   CE1   CE2    CZ    OH    improper_Z_CA_X_Y 
+
+
+[ VAL ]
+ [ atoms ]
+     N    opls_238   -0.500     1
+     H    opls_241    0.300     1
+    CA    opls_224B   0.140     1
+    HA    opls_140    0.060     1
+    CB    opls_137   -0.060	2
+    HB    opls_140    0.060     2
+   CG1    opls_135   -0.180     3
+  HG11    opls_140    0.060     3
+  HG12    opls_140    0.060     3
+  HG13    opls_140    0.060     3
+   CG2    opls_135   -0.180     4
+  HG21    opls_140    0.060     4
+  HG22    opls_140    0.060     4
+  HG23    opls_140    0.060     4
+     C    opls_235    0.500     5
+     O    opls_236   -0.500     5
+ [ bonds ]
+     N     H
+     N    CA
+    CA    HA
+    CA    CB
+    CA     C
+    CB    HB
+    CB   CG1
+    CB   CG2
+   CG1  HG11
+   CG1  HG12
+   CG1  HG13
+   CG2  HG21
+   CG2  HG22
+   CG2  HG23
+     C     O
+    -C     N
+ [ dihedrals ] ; override some with residue-specific ones
+    N    CA    CB    CG1    dih_VAL_chi1_N_C_C_C
+    N    CA    CB    CG2    dih_VAL_chi1_N_C_C_C
+   CG1    CB    CA     C    dih_VAL_chi1_C_C_C_CO
+   CG2    CB    CA     C    dih_VAL_chi1_C_C_C_CO
+ [ impropers ]
+    -C    CA     N     H    improper_Z_N_X_Y 
+    CA    +N     C     O    improper_O_C_X_Y 
+
+
+[ F ]
+ [ atoms ]
+    F    opls_400  -1.000     0
+
+[ CL ]
+ [ atoms ]
+    CL   opls_401  -1.000     0
+
+[ BR ]
+ [ atoms ]
+    BR   opls_402  -1.000     0
+
+
+; Aqvists cation parameters
+
+[ LI ]
+ [ atoms ]
+    LI   opls_406   1.000     0 ; Jorgensen ion type would be opls_404
+
+[ NA ]
+ [ atoms ]
+    NA   opls_407   1.000     0 ; Jorgensen ion type would be opls_405
+
+[ K ]
+ [ atoms ]
+    K    opls_408   1.000     0
+
+[ RB ]
+ [ atoms ]
+    RB   opls_409   1.000     0
+
+[ CS ]
+ [ atoms ]
+    CS   opls_410   1.000     0
+
+[ MG ]
+ [ atoms ]
+    MG   opls_411   2.000     0
+
+[ CA ]
+ [ atoms ]
+    CA   opls_412   2.000     0
+
+[ SR ]
+ [ atoms ]
+    SR   opls_413   2.000     0
+
+[ BA ]
+ [ atoms ]
+    BA   opls_414   2.000     0
+
+
+; Ethanol - CA is the carbon bound to the OH group
+[ EtOH ]
+ [ atoms ]
+    CB   opls_135    -0.180    1
+   HB1   opls_140     0.060    1
+   HB2   opls_140     0.060    1
+   HB3   opls_140     0.060    1
+    CA   opls_157     0.145    2
+   HA1   opls_140     0.060    2
+   HA2   opls_140     0.060    2
+    OH   opls_154    -0.683    2
+    HO   opls_155     0.418    2
+ [ bonds ]
+   CB    HB1
+   CB    HB2
+   CB    HB3
+   CB    CA
+   CA    HA1
+   CA    HA2
+   CA    OH
+   OH    HO
+
+
+; New All atom DMSO model, DvdS, 17/06/2006
+; Use at your own risk!
+[ DMSO  ]
+ [ atoms ]
+OD	    opls_125	-0.459	    1
+SD	    opls_124	 0.139      1
+CD1	    opls_139	-0.020	    1
+HD11	    opls_140	 0.060	    1
+HD12	    opls_140	 0.060	    1
+HD13	    opls_140	 0.060	    1
+CD2	    opls_139	-0.020	    1
+HD21	    opls_140	 0.060	    1
+HD22	    opls_140	 0.060	    1
+HD23	    opls_140	 0.060	    1
+
+ [ bonds ]
+    OD     SD  
+    SD     CD1 
+    SD     CD2 
+    CD1    HD11
+    CD1	   HD12
+    CD1	   HD13
+    CD2	   HD21
+    CD2	   HD22
+    CD2	   HD23
+
+; TU1 residue from ACIE (734184) M. Smith 07/06/2016
+[ TU1 ]
+ [ atoms ]
+C1	tu1_C1	0.4500	1
+N2	tu1_N2	-0.4727	1
+O3	tu1_O3	-0.2850	1
+S4	tu1_S4	-0.4762	1
+C5	tu1_C5	0.1500	1
+N6	tu1_N6	-0.5181	1
+O7	tu1_O7	-0.6163	1
+C8	tu1_C8	-0.1150	1
+N9	tu1_N9	-0.4218	1
+C10	tu1_C10	0.1066	1
+N11	tu1_N11	-0.4272	1
+C12	tu1_C12	0.0850	1
+C13	tu1_C13	-0.1150	1
+C14	tu1_C14	-0.1150	1
+C15	tu1_C15	0.1400	1
+C16	tu1_C16	0.1400	1
+C17	tu1_C17	0.0000	1
+C18	tu1_C18	-0.1800	1
+C19	tu1_C19	-0.1800	1
+C20	tu1_C20	-0.1800	1
+C21	tu1_C21	0.7661	1
+C22	tu1_C22	0.0320	1
+C23	tu1_C23	-0.1800	1
+C24	tu1_C24	0.3820	1
+C25	tu1_C25	0.0320	1
+C26	tu1_C26	-0.1800	1
+F27	tu1_F27	-0.2000	1
+F28	tu1_F28	-0.2000	1
+F29	tu1_F29	-0.2000	1
+H30	tu1_H30	0.1150	1
+H31	tu1_H31	0.1150	1
+H32	tu1_H32	0.1150	1
+H33	tu1_H33	0.0600	1
+H34	tu1_H34	0.2912	1
+H35	tu1_H35	0.2912	1
+H36	tu1_H36	0.3000	1
+H37	tu1_H37	0.2912	1
+H38	tu1_H38	0.0300	1
+H39	tu1_H39	0.0300	1
+H40	tu1_H40	0.0600	1
+H41	tu1_H41	0.0600	1
+H42	tu1_H42	0.0600	1
+H43	tu1_H43	0.0600	1
+H44	tu1_H44	0.0600	1
+H45	tu1_H45	0.0600	1
+H46	tu1_H46	0.0600	1
+H47	tu1_H47	0.0600	1
+H48	tu1_H48	0.0600	1
+H49	tu1_H49	0.0600	1
+H50	tu1_H50	0.0600	1
+H51	tu1_H51	0.0600	1
+H52	tu1_H52	0.0600	1
+H53	tu1_H53	0.0600	1
+H54	tu1_H54	0.0600	1
+H55	tu1_H55	0.0600	1
+H56	tu1_H56	0.0600	1
+H57	tu1_H57	0.0600	1
+H58	tu1_H58	0.0600	1
+
+ [ bonds ]
+C1	C5
+C1	F27
+C1	F28
+C1	F29
+N2	C10
+N2	C21
+N2	H34
+O3	C12
+O3	C15
+S4	C24
+C5	C8
+C5	C14
+N6	C21
+N6	C22
+N6	H35
+O7	C21
+C8	C10
+C8	H30
+N9	C16
+N9	C24
+N9	H36
+C10	C12
+N11	C24
+N11	C25
+N11	H37
+C12	C13
+C13	C14
+C13	H31
+C14	H32
+C15	C16
+C15	H38
+C15	H39
+C16	C17
+C16	H33
+C17	C18
+C17	C19
+C17	C20
+C18	H40
+C18	H41
+C18	H42
+C19	H43
+C19	H44
+C19	H45
+C20	H46
+C20	H47
+C20	H48
+C22	C23
+C22	H49
+C22	H50
+C23	H51
+C23	H52
+C23	H53
+C25	C26
+C25	H54
+C25	H55
+C26	H56
+C26	H57
+C26	H58
+
+[ impropers ]
+H34	C21	N2	C10	improper_tu1.H34_C21_N2_C10	
+C8	C14	C5	C1	improper_tu1.C8_C14_C5_C1	
+H35	C21	N6	C22	improper_tu1.H35_C21_N6_C22	
+C10	H30	C8	C5	improper_tu1.C10_H30_C8_C5	
+H36	C24	N9	C16	improper_tu1.H36_C24_N9_C16	
+N2	C12	C10	C8	improper_tu1.N2_C12_C10_C8	
+H37	C24	N11	C25	improper_tu1.H37_C24_N11_C25	
+O3	C13	C12	C10	improper_tu1.O3_C13_C12_C10	
+C14	H31	C13	C12	improper_tu1.C14_H31_C13_C12	
+C13	H32	C14	C5	improper_tu1.C13_H32_C14_C5	
+N2	N6	C21	O7	improper_tu1.N2_N6_C21_O7	
+N9	N11	C24	S4	improper_tu1.N9_N11_C24_S4	
+
+;TU3 Fernanda Duarte 20/07/16
+[ TU3 ]
+ [ atoms ]
+C1	tu3_C1	0.4500	1
+N2	tu3_N2	-0.4727	1
+O3	tu3_O3	-0.2850	1
+C4	tu3_C4	0.1500	1
+N5	tu3_N5	-0.5181	1
+O6	tu3_O6	-0.6163	1
+C7	tu3_C7	-0.1150	1
+C8	tu3_C8	0.1066	1
+C9	tu3_C9	0.0850	1
+C10	tu3_C10	-0.1150	1
+C11	tu3_C11	-0.1150	1
+C12	tu3_C12	0.7661	1
+C13	tu3_C13	0.0320	1
+C14	tu3_C14	-0.1800	1
+F15	tu3_F15	-0.2000	1
+F16	tu3_F16	-0.2000	1
+F17	tu3_F17	-0.2000	1
+H18	tu3_H18	0.1150	1
+H19	tu3_H19	0.1150	1
+H20	tu3_H20	0.1150	1
+H21	tu3_H21	0.2912	1
+H22	tu3_H22	0.2912	1
+H23	tu3_H23	0.0300	1
+H24	tu3_H24	0.0300	1
+H25	tu3_H25	0.0600	1
+H26	tu3_H26	0.0600	1
+H27	tu3_H27	0.0600	1
+H28	tu3_H28	0.0600	1
+H29	tu3_H29	0.0600	1
+C30	tu3_C30	0.1400	2
+S31	tu3_S31	-0.4762	2
+N32	tu3_N32	-0.4218	2
+N33	tu3_N33	-0.4218	2
+C34	tu3_C34	0.1400	2
+C35	tu3_C35	0.0000	2
+C36	tu3_C36	-0.1800	2
+C37	tu3_C37	-0.1800	2
+C38	tu3_C38	-0.1800	2
+C39	tu3_C39	0.3198	2
+C40	tu3_C40	0.1400	2
+H41	tu3_H41	0.0600	2
+H42	tu3_H42	0.3000	2
+H43	tu3_H43	0.3000	2
+H44	tu3_H44	0.0600	2
+H45	tu3_H45	0.0600	2
+H46	tu3_H46	0.0600	2
+H47	tu3_H47	0.0600	2
+H48	tu3_H48	0.0600	2
+H49	tu3_H49	0.0600	2
+H50	tu3_H50	0.0600	2
+H51	tu3_H51	0.0600	2
+H52	tu3_H52	0.0600	2
+H53	tu3_H53	0.0600	2
+C54	tu3_C54	0.1450	2
+H55	tu3_H55	0.0600	2
+H56	tu3_H56	0.0600	2
+O57	tu3_O57	-0.6830	2
+H58	tu3_H58	0.4180	2
+C59	tu3_C59	0.5000	3
+O60	tu3_O60	-0.5000	3
+N61	tu3_N61	-0.5000	3
+H62	tu3_H62	0.3000	3
+C63	tu3_C63	0.1400	3
+H64	tu3_H64	0.0600	3
+C65	tu3_C65	0.5100	3
+O66	tu3_O66	-0.4300	3
+O67	tu3_O67	-0.3300	3
+C68	tu3_C68	0.1600	3
+H69	tu3_H69	0.0300	3
+H70	tu3_H70	0.0300	3
+H71	tu3_H71	0.0300	3
+C72	tu3_C72	-0.2970	3
+H73	tu3_H73	0.0600	3
+H74	tu3_H74	0.0600	3
+C75	tu3_C75	0.5040	3
+C76	tu3_C76	-0.2610	3
+N77	tu3_N77	-0.5640	3
+N78	tu3_N78	-0.2910	3
+H79	tu3_H79	0.1830	3
+C80	tu3_C80	0.1820	3
+H81	tu3_H81	0.3260	3
+H82	tu3_H82	0.0980	3
+
+ [ bonds ]
+C1	C4
+C1	F15
+C1	F16
+C1	F17
+N2	C8
+N2	C12
+N2	H21
+O3	C9
+O3	C30
+C4	C7
+C4	C11
+N5	C12
+N5	C13
+N5	H22
+O6	C12
+C7	C8
+C7	H18
+C8	C9
+C9	C10
+C10	C11
+C10	H19
+C11	H20
+C13	C14
+C13	H25
+C13	H26
+C14	H27
+C14	H28
+C14	H29
+H23	C30
+H24	C30
+C30	C34
+S31	C39
+N32	C34
+N32	C39
+N32	H42
+N33	C39
+N33	C40
+N33	H43
+C34	C35
+C34	H41
+C35	C36
+C35	C37
+C35	C38
+C36	H44
+C36	H45
+C36	H46
+C37	H47
+C37	H48
+C37	H49
+C38	H50
+C38	H51
+C38	H52
+C40	H53
+C40	C54
+C40	C59
+C54	H55
+C54	H56
+C54	O57
+O57	H58
+C59	O60
+C59	N61
+N61	H62
+N61	C63
+C63	H64
+C63	C65
+C63	C72
+C65	O66
+C65	O67
+O67	C68
+C68	H69
+C68	H70
+C68	H71
+C72	H73
+C72	H74
+C72	C75
+C75	C76
+C75	N77
+C76	N78
+C76	H79
+N77	C80
+N78	C80
+N78	H81
+C80	H82
+
+[ impropers ]
+H21	C12	N2	C8	improper_tu3.H21_C12_N2_C8
+C11	C7	C4	C1	improper_tu3.C11_C7_C4_C1
+H22	C12	N5	C13	improper_tu3.H22_C12_N5_C13
+C4	H18	C7	C8	improper_tu3.C4_H18_C7_C8
+C7	C9	C8	N2	improper_tu3.C7_C9_C8_N2
+O3	C10	C9	C8	improper_tu3.O3_C10_C9_C8
+C11	H19	C10	C9	improper_tu3.C11_H19_C10_C9
+C4	H20	C11	C10	improper_tu3.C4_H20_C11_C10
+N2	N5	C12	O6	improper_tu3.N2_N5_C12_O6
+H42	C39	N32	C34	improper_tu3.H42_C39_N32_C34
+H43	C39	N33	C40	improper_tu3.H43_C39_N33_C40
+N32	N33	C39	S31	improper_tu3.N32_N33_C39_S31
+C40	N61	C59	O60	improper_tu3.C40_N61_C59_O60
+H62	C59	N61	C63	improper_tu3.H62_C59_N61_C63
+C63	O67	C65	O66	improper_tu3.C63_O67_C65_O66
+C76	N77	C75	C72	improper_tu3.C76_N77_C75_C72
+N78	H79	C76	C75	improper_tu3.N78_H79_C76_C75
+H81	C76	N78	C80	improper_tu3.H81_C76_N78_C80
+N78	H82	C80	N77	improper_tu3.N78_H82_C80_N77
+
+; Output for residue cf3
+; Generated with gmx_add_residue.py from 'cf3.ffld14'
+; Date: Thu Jul 07 09:18:35 2016
+
+[ cf3 ]
+[ atoms ]
+C1  cf3_C1   0.5100 1
+O2  cf3_O2  -0.4300 1
+O3  cf3_O3  -0.1650 1
+C4  cf3_C4  -0.0300 1
+C5  cf3_C5   0.6171 1
+C6  cf3_C6  -0.2300 1
+H7  cf3_H7   0.1150 1
+H8  cf3_H8   0.1150 1
+H9  cf3_H9   0.1150 1
+F10 cf3_F10 -0.2057 1
+F11 cf3_F11 -0.2057 1
+F12 cf3_F12 -0.2057 1
+
+
+[ bonds ]
+C1  O2
+C1  O3
+C1  C5
+O3  C4
+C4  C6
+C4  H9
+C5  F10
+C5  F11
+C5  F12
+C6  H7
+C6  H8
+
+
+[ impropers ]
+O3  C5  C1  O2  improper_cf3.O3_C5_C1_O2
+O3  H9  C4  C6  improper_cf3.O3_H9_C4_C6
+H7  H8  C6  C4  improper_cf3.H7_H8_C6_C4
+
+
+; Output for residue ch3
+; Generated with gmx_add_residue.py from 'ch3.ffld14'
+; Date: Thu Jul 07 09:27:34 2016
+
+[ ch3 ]
+[ atoms ]
+C1  ch3_C1   0.5100 1
+O2  ch3_O2  -0.4300 1
+O3  ch3_O3  -0.1650 1
+C4  ch3_C4  -0.0300 1
+C5  ch3_C5  -0.1800 1
+C6  ch3_C6  -0.2300 1
+H7  ch3_H7   0.1150 1
+H8  ch3_H8   0.1150 1
+H9  ch3_H9   0.1150 1
+H10 ch3_H10  0.0600 1
+H11 ch3_H11  0.0600 1
+H12 ch3_H12  0.0600 1
+
+
+[ bonds ]
+C1  O2
+C1  O3
+C1  C5
+O3  C4
+C4  C6
+C4  H9
+C5  H10
+C5  H11
+C5  H12
+C6  H7
+C6  H8
+
+
+[ impropers ]
+O3  C5  C1  O2  improper_ch3.O3_C5_C1_O2
+O3  H9  C4  C6  improper_ch3.O3_H9_C4_C6
+H7  H8  C6  C4  improper_ch3.H7_H8_C6_C4
+
+
+
+; Output for residue lg1
+; Generated with gmx_add_residue.py from 'ligand.ffld14'
+; Date: Tue Feb 21 21:34:49 2017
+
+[ lg1 ]
+[ atoms ]
+O1  lg1_O1  -0.5000 1
+O2  lg1_O2  -0.5000 1
+N3  lg1_N3  -0.6300 1
+N4  lg1_N4  -0.5425 1
+N5  lg1_N5  -0.6300 1
+N6  lg1_N6  -0.5425 1
+N7  lg1_N7  -0.7311 1
+C8  lg1_C8   0.0900 1
+C9  lg1_C9   0.0900 1
+C10 lg1_C10  0.0900 1
+C11 lg1_C11  0.0900 1
+C12 lg1_C12  0.0900 1
+C13 lg1_C13  0.0900 1
+C14 lg1_C14  0.0900 1
+C15 lg1_C15  0.0900 1
+C16 lg1_C16  0.2050 1
+C17 lg1_C17  0.0025 1
+C18 lg1_C18  0.5000 1
+C19 lg1_C19  0.2050 1
+C20 lg1_C20  0.0025 1
+C21 lg1_C21  0.5000 1
+C22 lg1_C22  0.3705 1
+C23 lg1_C23 -0.4849 1
+C24 lg1_C24  0.0486 1
+C25 lg1_C25 -0.1736 1
+C26 lg1_C26  0.7341 1
+H27 lg1_H27  0.0600 1
+H28 lg1_H28  0.0600 1
+H29 lg1_H29  0.0600 1
+H30 lg1_H30  0.0600 1
+H31 lg1_H31  0.0600 1
+H32 lg1_H32  0.0600 1
+H33 lg1_H33  0.0600 1
+H34 lg1_H34  0.0600 1
+H35 lg1_H35  0.0600 1
+H36 lg1_H36  0.0600 1
+H37 lg1_H37  0.0600 1
+H38 lg1_H38  0.0600 1
+H39 lg1_H39  0.0600 1
+H40 lg1_H40  0.0600 1
+H41 lg1_H41  0.0600 1
+H42 lg1_H42  0.0600 1
+H43 lg1_H43  0.0600 1
+H44 lg1_H44  0.0600 1
+H45 lg1_H45  0.0600 1
+H46 lg1_H46  0.0600 1
+H47 lg1_H47  0.0600 1
+H48 lg1_H48  0.0600 1
+H49 lg1_H49  0.0600 1
+H50 lg1_H50  0.0600 1
+H51 lg1_H51  0.1970 1
+C52 lg1_C52  0.3705 1
+C53 lg1_C53  0.7341 1
+C54 lg1_C54 -0.4849 1
+C55 lg1_C55 -0.1736 1
+C56 lg1_C56  0.0486 1
+H57 lg1_H57  0.1970 1
+H58 lg1_H58  0.1325 1
+N59 lg1_N59 -0.7311 1
+C60 lg1_C60 -0.1673 1
+C61 lg1_C61 -0.4407 1
+C62 lg1_C62 -0.2060 1
+C63 lg1_C63  0.1805 1
+C64 lg1_C64 -0.4407 1
+C65 lg1_C65 -0.1673 1
+C66 lg1_C66 -0.2060 1
+H67 lg1_H67  0.1554 1
+C68 lg1_C68  0.1805 1
+H69 lg1_H69  0.1528 1
+H70 lg1_H70  0.1554 1
+H71 lg1_H71  0.2022 1
+H72 lg1_H72  0.2022 1
+H73 lg1_H73  0.1528 1
+H74 lg1_H74  0.1325 1
+C75 lg1_C75  0.0800 1
+H76 lg1_H76  0.0600 1
+H77 lg1_H77  0.0600 1
+C78 lg1_C78 -0.2200 1
+H79 lg1_H79  0.0600 1
+H80 lg1_H80  0.0600 1
+C81 lg1_C81  0.0800 1
+H82 lg1_H82  0.0600 1
+H83 lg1_H83  0.0600 1
+C84 lg1_C84 -0.2200 1
+H85 lg1_H85  0.0600 1
+H86 lg1_H86  0.0600 1
+N87 lg1_N87 -0.5000 1
+N88 lg1_N88 -0.5000 1
+H89 lg1_H89  0.3000 1
+H90 lg1_H90  0.3000 1
+C91 lg1_C91  0.7000 1
+C92 lg1_C92  0.7000 1
+O93 lg1_O93 -0.8000 1
+O94 lg1_O94 -0.8000 1
+O95 lg1_O95 -0.8000 1
+O96 lg1_O96 -0.8000 1
+C97 lg1_C97  0.5000 1
+C98 lg1_C98  0.5000 1
+N99 lg1_N99 -0.3850 1
+Nx0 lg1_N100 -0.3850 1
+H101 lg1_H101  0.3000 1
+H102 lg1_H102  0.3000 1
+O103 lg1_O103 -0.5000 1
+O104 lg1_O104 -0.5000 1
+C105 lg1_C105 -0.1800 1
+H106 lg1_H106  0.0600 1
+H107 lg1_H107  0.0600 1
+H108 lg1_H108  0.0600 1
+C109 lg1_C109 -0.1800 1
+H110 lg1_H110  0.0600 1
+H111 lg1_H111  0.0600 1
+H112 lg1_H112  0.0600 1
+
+
+[ bonds ]
+O1  C18
+O2  C21
+N3  C8
+N3  C15
+N3  C16
+N4  C9
+N4  C10
+N4  C17
+N5  C11
+N5  C12
+N5  C19
+N6  C13
+N6  C14
+N6  C20
+N7  C22
+N7  C26
+C8  C9
+C8  H27
+C8  H28
+C9  H29
+C9  H30
+C10 C11
+C10 H31
+C10 H32
+C11 H33
+C11 H34
+C12 C13
+C12 H35
+C12 H36
+C13 H37
+C13 H38
+C14 C15
+C14 H39
+C14 H40
+C15 H41
+C15 H42
+C16 C22
+C16 H43
+C16 H44
+C17 C18
+C17 H45
+C17 H46
+C18 N87
+C19 H47
+C19 H48
+C19 C52
+C20 C21
+C20 H49
+C20 H50
+C21 N88
+C22 C23
+C23 C24
+C23 H51
+C24 C25
+C24 H74
+C25 C26
+C25 C65
+C26 C64
+C52 C54
+C52 N59
+C53 C55
+C53 N59
+C53 C61
+C54 C56
+C54 H57
+C55 C56
+C55 C60
+C56 H58
+C60 C62
+C60 H69
+C61 C63
+C61 H71
+C62 C63
+C62 H70
+C63 Nx0
+C64 C68
+C64 H72
+C65 C66
+C65 H73
+C66 H67
+C66 C68
+C68 N99
+C75 H76
+C75 H77
+C75 C78
+C75 N87
+C78 H79
+C78 H80
+C78 C92
+C81 H82
+C81 H83
+C81 C84
+C81 N88
+C84 H85
+C84 H86
+C84 C91
+N87 H90
+N88 H89
+C91 O95
+C91 O96
+C92 O93
+C92 O94
+C97 N99
+C97 O103
+C97 C105
+C98 Nx0
+C98 O104
+C98 C109
+N99 H102
+Nx0 H101
+C105 H106
+C105 H107
+C105 H108
+C109 H110
+C109 H111
+C109 H112
+
+
+[ impropers ]
+C17 N87 C18 O1  improper_lg1.C17_N87_C18_O1
+C20 N88 C21 O2  improper_lg1.C20_N88_C21_O2
+C16 C23 C22 N7  improper_lg1.C16_C23_C22_N7
+C24 H51 C23 C22 improper_lg1.C24_H51_C23_C22
+C25 H74 C24 C23 improper_lg1.C25_H74_C24_C23
+C26 C65 C25 C24 improper_lg1.C26_C65_C25_C24
+C25 C64 C26 N7  improper_lg1.C25_C64_C26_N7
+C54 N59 C52 C19 improper_lg1.C54_N59_C52_C19
+N59 C61 C53 C55 improper_lg1.N59_C61_C53_C55
+C56 H57 C54 C52 improper_lg1.C56_H57_C54_C52
+C56 C60 C55 C53 improper_lg1.C56_C60_C55_C53
+C55 H58 C56 C54 improper_lg1.C55_H58_C56_C54
+C62 H69 C60 C55 improper_lg1.C62_H69_C60_C55
+C63 H71 C61 C53 improper_lg1.C63_H71_C61_C53
+C63 H70 C62 C60 improper_lg1.C63_H70_C62_C60
+C62 Nx0 C63 C61 improper_lg1.C62_Nx0_C63_C61
+C68 H72 C64 C26 improper_lg1.C68_H72_C64_C26
+C66 H73 C65 C25 improper_lg1.C66_H73_C65_C25
+H67 C68 C66 C65 improper_lg1.H67_C68_C66_C65
+C66 N99 C68 C64 improper_lg1.C66_N99_C68_C64
+H90 C18 N87 C75 improper_lg1.H90_C18_N87_C75
+H89 C21 N88 C81 improper_lg1.H89_C21_N88_C81
+O95 C84 C91 O96 improper_lg1.O95_C84_C91_O96
+O93 C78 C92 O94 improper_lg1.O93_C78_C92_O94
+N99 C105 C97 O103 improper_lg1.N99_C105_C97_O103
+Nx0 C109 C98 O104 improper_lg1.Nx0_C109_C98_O104
+H102 C97 N99 C68 improper_lg1.H102_C97_N99_C68
+H101 C98 Nx0 C63 improper_lg1.H101_C98_Nx0_C63
+
+
+; Output for residue atp
+; Generated with gmx_add_residue.py from 'atp.ffld14'
+; Date: Wed Feb 22 00:12:31 2017
+
+[ atp ]
+[ atoms ]
+O1  atp_O1  -1.1200 1
+P2  atp_P2   1.8725 1
+O3  atp_O3  -1.1200 1
+O4  atp_O4  -1.1200 1
+O5  atp_O5  -0.6633 1
+P6  atp_P6   1.8411 1
+O7  atp_O7  -1.0580 1
+O8  atp_O8  -0.5855 1
+O9  atp_O9  -1.0580 1
+P10 atp_P10  1.3612 1
+O11 atp_O11 -0.9700 1
+O12 atp_O12 -0.9700 1
+O13 atp_O13 -0.6100 1
+C14 atp_C14  0.0200 1
+H15 atp_H15  0.0600 1
+H16 atp_H16  0.0600 1
+H17 atp_H17  0.0600 1
+
+
+[ bonds ]
+O1  P2
+P2  O3
+P2  O4
+P2  O5
+O5  P6
+P6  O7
+P6  O8
+P6  O9
+O8  P10
+P10 O11
+P10 O12
+P10 O13
+O13 C14
+C14 H15
+C14 H16
+C14 H17
+
+
+[ impropers ]
+
+[ Eu1 ]
+ [ atoms ]
+    Eu1    opls_705   3.000     0
+
+[ Eu2 ]
+ [ atoms ]
+    Eu2    Eu3_fd     3.000     0
+
+[ CLF ]
+ [ atoms ]
+   CL1    opls_151    0.012     1 
+   C2     opls_152   -0.3336    1  
+   H3     opls_153    0.2976    1 
+   CL4    opls_151    0.012     1
+   CL5    opls_151    0.012     1
+
+ [ bonds ]
+C2 CL1
+C2 H3
+C2 CL4
+C2 CL5
+
+; Output for residue c2v
+; Generated with gmx_add_residue.py from 'lig_c2v.ffld14'
+; Date: Fri Sep 29 17:51:09 2017
+
+[ c2v ]
+[ atoms ]
+N1  c2v_N1  -0.661142 1
+N2  c2v_N2  -0.661142 1
+C3  c2v_C3   0.427403 1
+H4  c2v_H4   0.055431 1
+C5  c2v_C5  -0.472118 1
+H6  c2v_H6   0.190164 1
+C7  c2v_C7   0.082788 1
+H8  c2v_H8   0.132109 1
+C9  c2v_C9  -0.035307 1
+C10 c2v_C10  0.363281 1
+H11 c2v_H11  0.081210 1
+C12 c2v_C12 -0.125695 1
+C13 c2v_C13 -0.247558 1
+C14 c2v_C14  0.689661 1
+C15 c2v_C15 -0.484302 1
+H16 c2v_H16  0.210459 1
+C17 c2v_C17  0.082685 1
+H18 c2v_H18  0.138933 1
+C19 c2v_C19 -0.484302 1
+H20 c2v_H20  0.210459 1
+C21 c2v_C21  0.689661 1
+C22 c2v_C22  0.427403 1
+H23 c2v_H23  0.055431 1
+C24 c2v_C24 -0.472118 1
+H25 c2v_H25  0.190164 1
+C26 c2v_C26  0.082788 1
+H27 c2v_H27  0.132109 1
+C28 c2v_C28 -0.035307 1
+C29 c2v_C29  0.363281 1
+H30 c2v_H30  0.081210 1
+C31 c2v_C31 -0.125695 1
+C32 c2v_C32 -0.247558 1
+N33 c2v_N33 -0.634386 1
+
+
+[ bonds ]
+N1  C3
+N1  C10
+N2  C22
+N2  C29
+C3  H4
+C3  C5
+C5  H6
+C5  C7
+C7  H8
+C7  C9
+C9  C10
+C9  C12
+C10 H11
+C12 C13
+C13 C14
+C14 C15
+C14 N33
+C15 H16
+C15 C17
+C17 H18
+C17 C19
+C19 H20
+C19 C21
+C21 C32
+C21 N33
+C22 H23
+C22 C24
+C24 H25
+C24 C26
+C26 H27
+C26 C28
+C28 C29
+C28 C31
+C29 H30
+C31 C32
+
+
+[ impropers ]
+H4  C5  C3  N1  improper_c2v.H4_C5_C3_N1
+H6  C7  C5  C3  improper_c2v.H6_C7_C5_C3
+H8  C9  C7  C5  improper_c2v.H8_C9_C7_C5
+C10 C12 C9  C7  improper_c2v.C10_C12_C9_C7
+C9  H11 C10 N1  improper_c2v.C9_H11_C10_N1
+C15 N33 C14 C13 improper_c2v.C15_N33_C14_C13
+H16 C17 C15 C14 improper_c2v.H16_C17_C15_C14
+H18 C19 C17 C15 improper_c2v.H18_C19_C17_C15
+H20 C21 C19 C17 improper_c2v.H20_C21_C19_C17
+C32 N33 C21 C19 improper_c2v.C32_N33_C21_C19
+H23 C24 C22 N2  improper_c2v.H23_C24_C22_N2
+H25 C26 C24 C22 improper_c2v.H25_C26_C24_C22
+H27 C28 C26 C24 improper_c2v.H27_C28_C26_C24
+C29 C31 C28 C26 improper_c2v.C29_C31_C28_C26
+C28 H30 C29 N2  improper_c2v.C28_H30_C29_N2
+
+
+; Output for residue mtl
+; Generated with gmx_add_residue.py from 'metal.ffld14'
+; Date: Thu Oct 12 15:44:50 2017
+
+[ mtl ]
+[ atoms ]
+    Pd    mtl_Pd     0.000     1
+   dm1    mtl_DM1    0.500     1
+   dm2    mtl_DM1    0.500     1
+   dm3    mtl_DM2    0.500     1
+   dm4    mtl_DM2    0.500     1
+
+[ bonds ]
+
+Pd  dm1
+Pd  dm2
+Pd  dm3
+Pd  dm4
+; Output for residue otf
+; Generated with gmx_add_residue.py from 'otf.ffld14'
+; Date: Wed Apr 18 11:29:14 2018
+
+[ otf ]
+[ atoms ]
+S1  otf_S1   2.1658 1
+O2  otf_O2  -0.9788 1
+O3  otf_O3  -0.9788 1
+C4  otf_C4  -0.1843 1
+F5  otf_F5  -0.0150 1
+F6  otf_F6  -0.0150 1
+F7  otf_F7  -0.0150 1
+O8  otf_O8  -0.9788 1
+
+
+[ bonds ]
+S1  O2
+S1  O3
+S1  C4
+S1  O8
+C4  F5
+C4  F6
+C4  F7
+
+
+[ impropers ]
+
+
+; Output for residue sbf
+; Generated with gmx_add_residue.py from 'sbf6.ffld14'
+; Date: Wed Apr 18 11:31:33 2018
+
+[ sbf ]
+[ atoms ]
+Sb1 sbf_Sb1 -1.0000 1
+F2  sbf_F2   0.0000 1
+F3  sbf_F3   0.0000 1
+F4  sbf_F4   0.0000 1
+F5  sbf_F5   0.0000 1
+F6  sbf_F6   0.0000 1
+F7  sbf_F7   0.0000 1
+
+
+[ bonds ]
+Sb1 F2
+Sb1 F3
+Sb1 F4
+Sb1 F5
+Sb1 F6
+Sb1 F7
+
+
+[ impropers ]
+
+
+; Output for residue sub
+; Generated with gmx_add_residue.py from 'sub2_c2v.ffld14'
+; Date: Wed Apr 18 11:37:24 2018
+
+[ sub ]
+[ atoms ]
+C1  sub_C1   0.5850 1
+C2  sub_C2  -0.1150 1
+C3  sub_C3  -0.1150 1
+C4  sub_C4   0.5850 1
+C5  sub_C5  -0.1150 1
+C6  sub_C6  -0.1150 1
+H7  sub_H7   0.1150 1
+H8  sub_H8   0.1150 1
+O9  sub_O9  -0.4700 1
+O10 sub_O10 -0.4700 1
+C11 sub_C11 -0.1150 1
+C12 sub_C12 -0.1150 1
+C13 sub_C13 -0.1150 1
+H14 sub_H14  0.1150 1
+C15 sub_C15 -0.1150 1
+H16 sub_H16  0.1150 1
+H17 sub_H17  0.1150 1
+H18 sub_H18  0.1150 1
+
+
+[ bonds ]
+C1  C2
+C1  C6
+C1  O9
+C2  C3
+C2  H7
+C3  C4
+C3  H8
+C4  C5
+C4  O10
+C5  C6
+C5  C12
+C6  C11
+C11 C13
+C11 H17
+C12 C15
+C12 H18
+C13 H14
+C13 C15
+C15 H16
+
+
+[ impropers ]
+C2  C6  C1  O9  improper_sub.C2_C6_C1_O9
+C1  H7  C2  C3  improper_sub.C1_H7_C2_C3
+C4  H8  C3  C2  improper_sub.C4_H8_C3_C2
+C3  C5  C4  O10 improper_sub.C3_C5_C4_O10
+C6  C12 C5  C4  improper_sub.C6_C12_C5_C4
+C5  C11 C6  C1  improper_sub.C5_C11_C6_C1
+C13 H17 C11 C6  improper_sub.C13_H17_C11_C6
+C15 H18 C12 C5  improper_sub.C15_H18_C12_C5
+H14 C15 C13 C11 improper_sub.H14_C15_C13_C11
+C13 H16 C15 C12 improper_sub.C13_H16_C15_C12
+
+
+; Output for residue qn1
+; Generated with gmx_add_residue.py from 'quin1.ffld14'
+; Date: Wed Apr 18 11:41:37 2018
+
+[ qn1 ]
+[ atoms ]
+C1  qn1_C1   0.4700 1
+C2  qn1_C2  -0.1150 1
+C3  qn1_C3  -0.1150 1
+H4  qn1_H4   0.1150 1
+C5  qn1_C5   0.4700 1
+H6  qn1_H6   0.1150 1
+C7  qn1_C7  -0.1150 1
+C8  qn1_C8  -0.1150 1
+H9  qn1_H9   0.1150 1
+H10 qn1_H10  0.1150 1
+O11 qn1_O11 -0.4700 1
+O12 qn1_O12 -0.4700 1
+
+
+[ bonds ]
+C1  C2
+C1  C8
+C1  O11
+C2  C3
+C2  H4
+C3  C5
+C3  H6
+C5  C7
+C5  O12
+C7  C8
+C7  H9
+C8  H10
+
+
+[ impropers ]
+C2  C8  C1  O11 improper_qn1.C2_C8_C1_O11
+C1  H4  C2  C3  improper_qn1.C1_H4_C2_C3
+C5  H6  C3  C2  improper_qn1.C5_H6_C3_C2
+C3  C7  C5  O12 improper_qn1.C3_C7_C5_O12
+C5  H9  C7  C8  improper_qn1.C5_H9_C7_C8
+C1  H10 C8  C7  improper_qn1.C1_H10_C8_C7
+
+
+; Output for residue lig
+; Generated with gmx_add_residue.py from 'lig.ffld14'
+; Date: Tue Sep 17 18:17:38 2019
+
+[ lig ]
+[ atoms ]
+N1  lig_N1  -0.6780 1
+N2  lig_N2  -0.6780 1
+C3  lig_C3   0.4730 1
+H4  lig_H4   0.0120 1
+C5  lig_C5  -0.4470 1
+H6  lig_H6   0.1550 1
+C7  lig_C7   0.2270 1
+H8  lig_H8   0.0650 1
+C9  lig_C9  -0.2570 1
+C10 lig_C10  0.4730 1
+H11 lig_H11  0.0120 1
+C12 lig_C12 -0.0350 1
+C13 lig_C13 -0.0350 1
+C14 lig_C14  0.5200 1
+C15 lig_C15 -0.4470 1
+H16 lig_H16  0.1550 1
+C17 lig_C17  0.2270 1
+H18 lig_H18  0.0650 1
+C19 lig_C19 -0.4470 1
+H20 lig_H20  0.1550 1
+C21 lig_C21  0.5200 1
+C22 lig_C22  0.4730 1
+H23 lig_H23  0.0120 1
+C24 lig_C24 -0.4470 1
+H25 lig_H25  0.1550 1
+C26 lig_C26  0.2270 1
+H27 lig_H27  0.0650 1
+C28 lig_C28 -0.2570 1
+C29 lig_C29  0.4730 1
+H30 lig_H30  0.0120 1
+C31 lig_C31 -0.0350 1
+C32 lig_C32 -0.0350 1
+N33 lig_N33 -0.6780 1
+
+
+[ bonds ]
+N1  C3
+N1  C10
+N2  C22
+N2  C29
+C3  H4
+C3  C5
+C5  H6
+C5  C7
+C7  H8
+C7  C9
+C9  C10
+C9  C12
+C10 H11
+C12 C13
+C13 C14
+C14 C15
+C14 N33
+C15 H16
+C15 C17
+C17 H18
+C17 C19
+C19 H20
+C19 C21
+C21 C32
+C21 N33
+C22 H23
+C22 C24
+C24 H25
+C24 C26
+C26 H27
+C26 C28
+C28 C29
+C28 C31
+C29 H30
+C31 C32
+
+
+[ impropers ]
+H4  C5  C3  N1  improper_lig.H4_C5_C3_N1
+H6  C7  C5  C3  improper_lig.H6_C7_C5_C3
+H8  C9  C7  C5  improper_lig.H8_C9_C7_C5
+C10 C12 C9  C7  improper_lig.C10_C12_C9_C7
+C9  H11 C10 N1  improper_lig.C9_H11_C10_N1
+C15 N33 C14 C13 improper_lig.C15_N33_C14_C13
+H16 C17 C15 C14 improper_lig.H16_C17_C15_C14
+H18 C19 C17 C15 improper_lig.H18_C19_C17_C15
+H20 C21 C19 C17 improper_lig.H20_C21_C19_C17
+C32 N33 C21 C19 improper_lig.C32_N33_C21_C19
+H23 C24 C22 N2  improper_lig.H23_C24_C22_N2
+H25 C26 C24 C22 improper_lig.H25_C26_C24_C22
+H27 C28 C26 C24 improper_lig.H27_C28_C26_C24
+C29 C31 C28 C26 improper_lig.C29_C31_C28_C26
+C28 H30 C29 N2  improper_lig.C28_H30_C29_N2
+
+
+; Output for residue l01
+; Generated with gmx_add_residue.py from 'lig.ffld14'
+; Date: Thu Sep 19 16:13:11 2019
+
+[ l01 ]
+[ atoms ]
+N1  l01_N1  -0.6780 1
+N2  l01_N2  -0.6780 1
+C3  l01_C3   0.4730 1
+H4  l01_H4   0.0120 1
+C5  l01_C5  -0.4470 1
+H6  l01_H6   0.1550 1
+C7  l01_C7   0.2270 1
+H8  l01_H8   0.0650 1
+C9  l01_C9  -0.2570 1
+C10 l01_C10  0.4730 1
+H11 l01_H11  0.0120 1
+C12 l01_C12 -0.0350 1
+C13 l01_C13 -0.0350 1
+C14 l01_C14  0.5200 1
+C15 l01_C15 -0.4470 1
+H16 l01_H16  0.1550 1
+C17 l01_C17  0.2270 1
+H18 l01_H18  0.0650 1
+C19 l01_C19 -0.4470 1
+H20 l01_H20  0.1550 1
+C21 l01_C21  0.5200 1
+C22 l01_C22  0.4730 1
+H23 l01_H23  0.0120 1
+C24 l01_C24 -0.4470 1
+H25 l01_H25  0.1550 1
+C26 l01_C26  0.2270 1
+H27 l01_H27  0.0650 1
+C28 l01_C28 -0.2570 1
+C29 l01_C29  0.4730 1
+H30 l01_H30  0.0120 1
+C31 l01_C31 -0.0350 1
+C32 l01_C32 -0.0350 1
+N33 l01_N33 -0.6780 1
+
+
+[ bonds ]
+N1  C3
+N1  C10
+N2  C22
+N2  C29
+C3  H4
+C3  C5
+C5  H6
+C5  C7
+C7  H8
+C7  C9
+C9  C10
+C9  C12
+C10 H11
+C12 C13
+C13 C14
+C14 C15
+C14 N33
+C15 H16
+C15 C17
+C17 H18
+C17 C19
+C19 H20
+C19 C21
+C21 C32
+C21 N33
+C22 H23
+C22 C24
+C24 H25
+C24 C26
+C26 H27
+C26 C28
+C28 C29
+C28 C31
+C29 H30
+C31 C32
+
+
+[ impropers ]
+H4  C5  C3  N1  improper_l01.H4_C5_C3_N1
+H6  C7  C5  C3  improper_l01.H6_C7_C5_C3
+H8  C9  C7  C5  improper_l01.H8_C9_C7_C5
+C10 C12 C9  C7  improper_l01.C10_C12_C9_C7
+C9  H11 C10 N1  improper_l01.C9_H11_C10_N1
+C15 N33 C14 C13 improper_l01.C15_N33_C14_C13
+H16 C17 C15 C14 improper_l01.H16_C17_C15_C14
+H18 C19 C17 C15 improper_l01.H18_C19_C17_C15
+H20 C21 C19 C17 improper_l01.H20_C21_C19_C17
+C32 N33 C21 C19 improper_l01.C32_N33_C21_C19
+H23 C24 C22 N2  improper_l01.H23_C24_C22_N2
+H25 C26 C24 C22 improper_l01.H25_C26_C24_C22
+H27 C28 C26 C24 improper_l01.H27_C28_C26_C24
+C29 C31 C28 C26 improper_l01.C29_C31_C28_C26
+C28 H30 C29 N2  improper_l01.C28_H30_C29_N2
+
+
+; Output for residue l02
+; Generated with gmx_add_residue.py from 'lig.ffld14'
+; Date: Thu Sep 19 16:13:18 2019
+
+[ l02 ]
+[ atoms ]
+N1  l02_N1  -0.6780 1
+N2  l02_N2  -0.6780 1
+C3  l02_C3   0.4730 1
+H4  l02_H4   0.0120 1
+C5  l02_C5  -0.4470 1
+H6  l02_H6   0.1550 1
+C7  l02_C7   0.2270 1
+H8  l02_H8   0.0650 1
+C9  l02_C9  -0.2570 1
+C10 l02_C10  0.4730 1
+H11 l02_H11  0.0120 1
+C12 l02_C12 -0.0350 1
+C13 l02_C13 -0.0350 1
+C14 l02_C14  0.5200 1
+C15 l02_C15 -0.4470 1
+H16 l02_H16  0.1550 1
+C17 l02_C17  0.2270 1
+H18 l02_H18  0.0650 1
+C19 l02_C19 -0.4470 1
+H20 l02_H20  0.1550 1
+C21 l02_C21  0.5200 1
+C22 l02_C22  0.4730 1
+H23 l02_H23  0.0120 1
+C24 l02_C24 -0.4470 1
+H25 l02_H25  0.1550 1
+C26 l02_C26  0.2270 1
+H27 l02_H27  0.0650 1
+C28 l02_C28 -0.2570 1
+C29 l02_C29  0.4730 1
+H30 l02_H30  0.0120 1
+C31 l02_C31 -0.0350 1
+C32 l02_C32 -0.0350 1
+N33 l02_N33 -0.6780 1
+
+
+[ bonds ]
+N1  C3
+N1  C10
+N2  C22
+N2  C29
+C3  H4
+C3  C5
+C5  H6
+C5  C7
+C7  H8
+C7  C9
+C9  C10
+C9  C12
+C10 H11
+C12 C13
+C13 C14
+C14 C15
+C14 N33
+C15 H16
+C15 C17
+C17 H18
+C17 C19
+C19 H20
+C19 C21
+C21 C32
+C21 N33
+C22 H23
+C22 C24
+C24 H25
+C24 C26
+C26 H27
+C26 C28
+C28 C29
+C28 C31
+C29 H30
+C31 C32
+
+
+[ impropers ]
+H4  C5  C3  N1  improper_l02.H4_C5_C3_N1
+H6  C7  C5  C3  improper_l02.H6_C7_C5_C3
+H8  C9  C7  C5  improper_l02.H8_C9_C7_C5
+C10 C12 C9  C7  improper_l02.C10_C12_C9_C7
+C9  H11 C10 N1  improper_l02.C9_H11_C10_N1
+C15 N33 C14 C13 improper_l02.C15_N33_C14_C13
+H16 C17 C15 C14 improper_l02.H16_C17_C15_C14
+H18 C19 C17 C15 improper_l02.H18_C19_C17_C15
+H20 C21 C19 C17 improper_l02.H20_C21_C19_C17
+C32 N33 C21 C19 improper_l02.C32_N33_C21_C19
+H23 C24 C22 N2  improper_l02.H23_C24_C22_N2
+H25 C26 C24 C22 improper_l02.H25_C26_C24_C22
+H27 C28 C26 C24 improper_l02.H27_C28_C26_C24
+C29 C31 C28 C26 improper_l02.C29_C31_C28_C26
+C28 H30 C29 N2  improper_l02.C28_H30_C29_N2
+
+
+
+; Output for residue brf
+; Generated with gmx_add_residue.py from 'brf.ffld14'
+; Date: Mon Sep 23 10:23:35 2019
+
+[ brf ]
+[ atoms ]
+C1  brf_C1  -0.1150 1
+C2  brf_C2   0.1500 1
+C3  brf_C3  -0.1150 1
+C4  brf_C4   0.1500 1
+C5  brf_C5  -0.1150 1
+C6  brf_C6  -0.1275 1
+H7  brf_H7   0.1150 1
+H8  brf_H8   0.1150 1
+H9  brf_H9   0.1150 1
+C10 brf_C10  0.4500 1
+F11 brf_F11 -0.2000 1
+F12 brf_F12 -0.2000 1
+F13 brf_F13 -0.2000 1
+C14 brf_C14  0.4500 1
+F15 brf_F15 -0.2000 1
+F16 brf_F16 -0.2000 1
+F17 brf_F17 -0.2000 1
+B18 brf_B18 -0.4900 1
+C19 brf_C19 -0.1275 1
+C20 brf_C20 -0.1150 1
+C21 brf_C21  0.1500 1
+C22 brf_C22 -0.1150 1
+C23 brf_C23  0.1500 1
+C24 brf_C24 -0.1150 1
+C25 brf_C25  0.4500 1
+C26 brf_C26  0.4500 1
+F27 brf_F27 -0.2000 1
+F28 brf_F28 -0.2000 1
+F29 brf_F29 -0.2000 1
+C30 brf_C30 -0.1275 1
+C31 brf_C31 -0.1150 1
+C32 brf_C32  0.1500 1
+C33 brf_C33 -0.1150 1
+C34 brf_C34  0.1500 1
+C35 brf_C35 -0.1150 1
+C36 brf_C36  0.4500 1
+F37 brf_F37 -0.2000 1
+F38 brf_F38 -0.2000 1
+F39 brf_F39 -0.2000 1
+C40 brf_C40  0.4500 1
+F41 brf_F41 -0.2000 1
+F42 brf_F42 -0.2000 1
+F43 brf_F43 -0.2000 1
+C44 brf_C44 -0.1275 1
+C45 brf_C45 -0.1150 1
+C46 brf_C46 -0.1150 1
+C47 brf_C47  0.1500 1
+C48 brf_C48 -0.1150 1
+C49 brf_C49  0.1500 1
+C50 brf_C50  0.4500 1
+F51 brf_F51 -0.2000 1
+F52 brf_F52 -0.2000 1
+F53 brf_F53 -0.2000 1
+C54 brf_C54  0.4500 1
+F55 brf_F55 -0.2000 1
+F56 brf_F56 -0.2000 1
+F57 brf_F57 -0.2000 1
+H58 brf_H58  0.1150 1
+H59 brf_H59  0.1150 1
+H60 brf_H60  0.1150 1
+H61 brf_H61  0.1150 1
+H62 brf_H62  0.1150 1
+H63 brf_H63  0.1150 1
+H64 brf_H64  0.1150 1
+H65 brf_H65  0.1150 1
+H66 brf_H66  0.1150 1
+F67 brf_F67 -0.2000 1
+F68 brf_F68 -0.2000 1
+F69 brf_F69 -0.2000 1
+
+
+[ bonds ]
+C1  C2
+C1  C6
+C1  H7
+C2  C3
+C2  C10
+C3  C4
+C3  H8
+C4  C5
+C4  C14
+C5  C6
+C5  H9
+C6  B18
+C10 F11
+C10 F12
+C10 F13
+C14 F15
+C14 F16
+C14 F17
+B18 C19
+B18 C30
+B18 C44
+C19 C20
+C19 C24
+C20 C21
+C20 H60
+C21 C22
+C21 C25
+C22 C23
+C22 H59
+C23 C24
+C23 C26
+C24 H58
+C25 F67
+C25 F68
+C25 F69
+C26 F27
+C26 F28
+C26 F29
+C30 C31
+C30 C35
+C31 C32
+C31 H62
+C32 C33
+C32 C36
+C33 C34
+C33 H63
+C34 C35
+C34 C40
+C35 H61
+C36 F37
+C36 F38
+C36 F39
+C40 F41
+C40 F42
+C40 F43
+C44 C45
+C44 C46
+C45 C49
+C45 H64
+C46 C47
+C46 H66
+C47 C48
+C47 C54
+C48 C49
+C48 H65
+C49 C50
+C50 F51
+C50 F52
+C50 F53
+C54 F55
+C54 F56
+C54 F57
+
+
+[ impropers ]
+C6  H7  C1  C2  improper_brf.C6_H7_C1_C2
+C3  C10 C2  C1  improper_brf.C3_C10_C2_C1
+C4  H8  C3  C2  improper_brf.C4_H8_C3_C2
+C5  C14 C4  C3  improper_brf.C5_C14_C4_C3
+C6  H9  C5  C4  improper_brf.C6_H9_C5_C4
+C5  B18 C6  C1  improper_brf.C5_B18_C6_C1
+C20 C24 C19 B18 improper_brf.C20_C24_C19_B18
+C21 H60 C20 C19 improper_brf.C21_H60_C20_C19
+C22 C25 C21 C20 improper_brf.C22_C25_C21_C20
+C23 H59 C22 C21 improper_brf.C23_H59_C22_C21
+C24 C26 C23 C22 improper_brf.C24_C26_C23_C22
+C23 H58 C24 C19 improper_brf.C23_H58_C24_C19
+C31 C35 C30 B18 improper_brf.C31_C35_C30_B18
+C32 H62 C31 C30 improper_brf.C32_H62_C31_C30
+C33 C36 C32 C31 improper_brf.C33_C36_C32_C31
+C34 H63 C33 C32 improper_brf.C34_H63_C33_C32
+C35 C40 C34 C33 improper_brf.C35_C40_C34_C33
+C34 H61 C35 C30 improper_brf.C34_H61_C35_C30
+C45 C46 C44 B18 improper_brf.C45_C46_C44_B18
+C49 H64 C45 C44 improper_brf.C49_H64_C45_C44
+C47 H66 C46 C44 improper_brf.C47_H66_C46_C44
+C48 C54 C47 C46 improper_brf.C48_C54_C47_C46
+C49 H65 C48 C47 improper_brf.C49_H65_C48_C47
+C48 C50 C49 C45 improper_brf.C48_C50_C49_C45
+
+
+; Output for residue g1q
+; Generated with gmx_add_residue.py from 'G1.ffld'
+; Date: Sat Oct  5 20:33:38 2019
+
+[ g1q ]
+[ atoms ]
+C1  g1q_C1  -0.1150 1
+C2  g1q_C2  -0.1150 1
+C3  g1q_C3  -0.1150 1
+C4  g1q_C4  -0.1150 1
+C5  g1q_C5  -0.1150 1
+C6  g1q_C6  -0.1150 1
+C7  g1q_C7   0.5850 1
+C8  g1q_C8  -0.1150 1
+C9  g1q_C9  -0.1150 1
+C10 g1q_C10  0.5850 1
+O11 g1q_O11 -0.4700 1
+O12 g1q_O12 -0.4700 1
+H13 g1q_H13  0.1150 1
+H14 g1q_H14  0.1150 1
+H15 g1q_H15  0.1150 1
+H16 g1q_H16  0.1150 1
+H17 g1q_H17  0.1150 1
+H18 g1q_H18  0.1150 1
+
+
+[ bonds ]
+C1  C2
+C1  C3
+C1  C10
+C2  C6
+C2  C7
+C3  C4
+C3  H17
+C4  C5
+C4  H18
+C5  C6
+C5  H15
+C6  H16
+C7  C8
+C7  O11
+C8  C9
+C8  H13
+C9  C10
+C9  H14
+C10 O12
+
+
+[ impropers ]
+C3  C10 C1  C2  improper_g1q.C3_C10_C1_C2
+C6  C7  C2  C1  improper_g1q.C6_C7_C2_C1
+C4  H17 C3  C1  improper_g1q.C4_H17_C3_C1
+C5  H18 C4  C3  improper_g1q.C5_H18_C4_C3
+C6  H15 C5  C4  improper_g1q.C6_H15_C5_C4
+C5  H16 C6  C2  improper_g1q.C5_H16_C6_C2
+C2  C8  C7  O11 improper_g1q.C2_C8_C7_O11
+C7  H13 C8  C9  improper_g1q.C7_H13_C8_C9
+C10 H14 C9  C8  improper_g1q.C10_H14_C9_C8
+C1  C9  C10 O12 improper_g1q.C1_C9_C10_O12
+
+
+; Output for residue g3q
+; Generated with gmx_add_residue.py from 'G3.ffld'
+; Date: Sat Oct  5 20:33:46 2019
+
+[ g3q ]
+[ atoms ]
+C1  g3q_C1  -0.1150 1
+C2  g3q_C2  -0.1150 1
+C3  g3q_C3  -0.1150 1
+C4  g3q_C4  -0.1150 1
+C5  g3q_C5  -0.1150 1
+C6  g3q_C6  -0.1150 1
+C7  g3q_C7   0.7000 1
+C8  g3q_C8  -0.1150 1
+C9  g3q_C9  -0.1150 1
+C10 g3q_C10  0.7000 1
+O11 g3q_O11 -0.4700 1
+O12 g3q_O12 -0.4700 1
+H13 g3q_H13  0.1150 1
+H14 g3q_H14  0.1150 1
+H15 g3q_H15  0.1150 1
+H16 g3q_H16  0.1150 1
+C17 g3q_C17 -0.1150 1
+C18 g3q_C18 -0.1150 1
+C19 g3q_C19 -0.1150 1
+C20 g3q_C20 -0.1150 1
+H21 g3q_H21  0.1150 1
+H22 g3q_H22  0.1150 1
+H23 g3q_H23  0.1150 1
+H24 g3q_H24  0.1150 1
+
+
+[ bonds ]
+C1  C2
+C1  C3
+C1  C10
+C2  C6
+C2  C7
+C3  C4
+C3  H15
+C4  C5
+C4  H16
+C5  C6
+C5  H13
+C6  H14
+C7  C8
+C7  O11
+C8  C9
+C8  C17
+C9  C10
+C9  C18
+C10 O12
+C17 C20
+C17 H22
+C18 C19
+C18 H24
+C19 C20
+C19 H23
+C20 H21
+
+
+[ impropers ]
+C3  C10 C1  C2  improper_g3q.C3_C10_C1_C2
+C6  C7  C2  C1  improper_g3q.C6_C7_C2_C1
+C4  H15 C3  C1  improper_g3q.C4_H15_C3_C1
+C5  H16 C4  C3  improper_g3q.C5_H16_C4_C3
+C6  H13 C5  C4  improper_g3q.C6_H13_C5_C4
+C5  H14 C6  C2  improper_g3q.C5_H14_C6_C2
+C2  C8  C7  O11 improper_g3q.C2_C8_C7_O11
+C9  C17 C8  C7  improper_g3q.C9_C17_C8_C7
+C10 C18 C9  C8  improper_g3q.C10_C18_C9_C8
+C1  C9  C10 O12 improper_g3q.C1_C9_C10_O12
+C20 H22 C17 C8  improper_g3q.C20_H22_C17_C8
+C19 H24 C18 C9  improper_g3q.C19_H24_C18_C9
+C20 H23 C19 C18 improper_g3q.C20_H23_C19_C18
+C19 H21 C20 C17 improper_g3q.C19_H21_C20_C17
+
+
+; Output for residue g4q
+; Generated with gmx_add_residue.py from 'G4.ffld'
+; Date: Sat Oct  5 20:33:54 2019
+
+[ g4q ]
+[ atoms ]
+C1  g4q_C1  -0.1150 1
+C2  g4q_C2  -0.1150 1
+C3  g4q_C3  -0.1150 1
+C4  g4q_C4   0.0000 1
+C5  g4q_C5   0.0000 1
+C6  g4q_C6  -0.1150 1
+C7  g4q_C7   0.7000 1
+C8  g4q_C8  -0.1150 1
+C9  g4q_C9  -0.1150 1
+C10 g4q_C10  0.7000 1
+O11 g4q_O11 -0.4700 1
+O12 g4q_O12 -0.4700 1
+H13 g4q_H13  0.1150 1
+H14 g4q_H14  0.1150 1
+C15 g4q_C15 -0.1150 1
+C16 g4q_C16 -0.1150 1
+C17 g4q_C17  0.0000 1
+C18 g4q_C18  0.0000 1
+H19 g4q_H19  0.1150 1
+H20 g4q_H20  0.1150 1
+C21 g4q_C21 -0.1150 1
+C22 g4q_C22 -0.1150 1
+C23 g4q_C23 -0.1150 1
+C24 g4q_C24 -0.1150 1
+H25 g4q_H25  0.1150 1
+H26 g4q_H26  0.1150 1
+H27 g4q_H27  0.1150 1
+H28 g4q_H28  0.1150 1
+C29 g4q_C29 -0.1150 1
+C30 g4q_C30 -0.1150 1
+C31 g4q_C31 -0.1150 1
+C32 g4q_C32 -0.1150 1
+H33 g4q_H33  0.1150 1
+H34 g4q_H34  0.1150 1
+H35 g4q_H35  0.1150 1
+H36 g4q_H36  0.1150 1
+
+
+[ bonds ]
+C1  C2
+C1  C3
+C1  C10
+C2  C6
+C2  C7
+C3  C4
+C3  H14
+C4  C5
+C4  C24
+C5  C6
+C5  C21
+C6  H13
+C7  C8
+C7  O11
+C8  C9
+C8  C15
+C9  C10
+C9  C16
+C10 O12
+C15 C18
+C15 H19
+C16 C17
+C16 H20
+C17 C18
+C17 C31
+C18 C29
+C21 C22
+C21 H25
+C22 C23
+C22 H26
+C23 C24
+C23 H27
+C24 H28
+C29 C30
+C29 H33
+C30 C32
+C30 H34
+C31 C32
+C31 H35
+C32 H36
+
+
+[ impropers ]
+C3  C10 C1  C2  improper_g4q.C3_C10_C1_C2
+C6  C7  C2  C1  improper_g4q.C6_C7_C2_C1
+C4  H14 C3  C1  improper_g4q.C4_H14_C3_C1
+C5  C24 C4  C3  improper_g4q.C5_C24_C4_C3
+C6  C21 C5  C4  improper_g4q.C6_C21_C5_C4
+C5  H13 C6  C2  improper_g4q.C5_H13_C6_C2
+C2  C8  C7  O11 improper_g4q.C2_C8_C7_O11
+C9  C15 C8  C7  improper_g4q.C9_C15_C8_C7
+C10 C16 C9  C8  improper_g4q.C10_C16_C9_C8
+C1  C9  C10 O12 improper_g4q.C1_C9_C10_O12
+C18 H19 C15 C8  improper_g4q.C18_H19_C15_C8
+C17 H20 C16 C9  improper_g4q.C17_H20_C16_C9
+C18 C31 C17 C16 improper_g4q.C18_C31_C17_C16
+C17 C29 C18 C15 improper_g4q.C17_C29_C18_C15
+C22 H25 C21 C5  improper_g4q.C22_H25_C21_C5
+C23 H26 C22 C21 improper_g4q.C23_H26_C22_C21
+C24 H27 C23 C22 improper_g4q.C24_H27_C23_C22
+C23 H28 C24 C4  improper_g4q.C23_H28_C24_C4
+C30 H33 C29 C18 improper_g4q.C30_H33_C29_C18
+C32 H34 C30 C29 improper_g4q.C32_H34_C30_C29
+C32 H35 C31 C17 improper_g4q.C32_H35_C31_C17
+C31 H36 C32 C30 improper_g4q.C31_H36_C32_C30
+
+
+; Output for residue g5q
+; Generated with gmx_add_residue.py from 'G5.ffld'
+; Date: Sat Oct  5 20:34:06 2019
+
+[ g5q ]
+[ atoms ]
+C1  g5q_C1  -0.1150 1
+C2  g5q_C2  -0.1150 1
+C3  g5q_C3  -0.1150 1
+C4  g5q_C4  -0.1150 1
+C5  g5q_C5   0.1800 1
+C6  g5q_C6  -0.1150 1
+C7  g5q_C7   0.7000 1
+C8  g5q_C8  -0.1150 1
+C9  g5q_C9  -0.1150 1
+C10 g5q_C10  0.7000 1
+O11 g5q_O11 -0.4700 1
+O12 g5q_O12 -0.4700 1
+H13 g5q_H13  0.1150 1
+H14 g5q_H14  0.1150 1
+C15 g5q_C15 -0.1150 1
+C16 g5q_C16 -0.1150 1
+C17 g5q_C17 -0.1150 1
+C18 g5q_C18 -0.1150 1
+H19 g5q_H19  0.1150 1
+H20 g5q_H20  0.1150 1
+N21 g5q_N21 -0.9000 1
+H22 g5q_H22  0.1150 1
+H23 g5q_H23  0.1150 1
+H24 g5q_H24  0.1150 1
+H25 g5q_H25  0.3600 1
+H26 g5q_H26  0.3600 1
+
+
+[ bonds ]
+C1  C2
+C1  C3
+C1  C10
+C2  C6
+C2  C7
+C3  C4
+C3  H14
+C4  C5
+C4  H24
+C5  C6
+C5  N21
+C6  H13
+C7  C8
+C7  O11
+C8  C9
+C8  C15
+C9  C10
+C9  C16
+C10 O12
+C15 C18
+C15 H19
+C16 C17
+C16 H20
+C17 C18
+C17 H22
+C18 H23
+N21 H25
+N21 H26
+
+
+[ impropers ]
+C3  C10 C1  C2  improper_g5q.C3_C10_C1_C2
+C6  C7  C2  C1  improper_g5q.C6_C7_C2_C1
+C4  H14 C3  C1  improper_g5q.C4_H14_C3_C1
+C5  H24 C4  C3  improper_g5q.C5_H24_C4_C3
+C6  N21 C5  C4  improper_g5q.C6_N21_C5_C4
+C5  H13 C6  C2  improper_g5q.C5_H13_C6_C2
+C2  C8  C7  O11 improper_g5q.C2_C8_C7_O11
+C9  C15 C8  C7  improper_g5q.C9_C15_C8_C7
+C10 C16 C9  C8  improper_g5q.C10_C16_C9_C8
+C1  C9  C10 O12 improper_g5q.C1_C9_C10_O12
+C18 H19 C15 C8  improper_g5q.C18_H19_C15_C8
+C17 H20 C16 C9  improper_g5q.C17_H20_C16_C9
+C18 H22 C17 C16 improper_g5q.C18_H22_C17_C16
+C17 H23 C18 C15 improper_g5q.C17_H23_C18_C15
+H26 C5  N21 H25 improper_g5q.H26_C5_N21_H25
+
+
+; Output for residue g7q
+; Generated with gmx_add_residue.py from 'G7.ffld'
+; Date: Sat Oct  5 20:35:15 2019
+
+[ g7q ]
+[ atoms ]
+O1  g7q_O1  -0.4700 1
+C2  g7q_C2   0.5850 1
+C3  g7q_C3  -0.1150 1
+C4  g7q_C4  -0.1150 1
+C5  g7q_C5   0.5850 1
+C6  g7q_C6  -0.1800 1
+H7  g7q_H7   0.0600 1
+H8  g7q_H8   0.0600 1
+H9  g7q_H9   0.0600 1
+C10 g7q_C10 -0.1800 1
+H11 g7q_H11  0.0600 1
+H12 g7q_H12  0.0600 1
+H13 g7q_H13  0.0600 1
+O14 g7q_O14 -0.4700 1
+C15 g7q_C15 -0.1150 1
+C16 g7q_C16 -0.1150 1
+C17 g7q_C17 -0.1150 1
+C18 g7q_C18 -0.1150 1
+H19 g7q_H19  0.1150 1
+H20 g7q_H20  0.1150 1
+H21 g7q_H21  0.1150 1
+H22 g7q_H22  0.1150 1
+
+
+[ bonds ]
+O1  C2
+C2  C3
+C2  C10
+C3  C4
+C3  C15
+C4  C5
+C4  C18
+C5  C6
+C5  O14
+C6  H7
+C6  H8
+C6  H9
+C10 H11
+C10 H12
+C10 H13
+C15 C16
+C15 H21
+C16 C17
+C16 H22
+C17 C18
+C17 H19
+C18 H20
+
+
+[ impropers ]
+C3  C10 C2  O1  improper_g7q.C3_C10_C2_O1
+C4  C15 C3  C2  improper_g7q.C4_C15_C3_C2
+C5  C18 C4  C3  improper_g7q.C5_C18_C4_C3
+C4  C6  C5  O14 improper_g7q.C4_C6_C5_O14
+C16 H21 C15 C3  improper_g7q.C16_H21_C15_C3
+C17 H22 C16 C15 improper_g7q.C17_H22_C16_C15
+C18 H19 C17 C16 improper_g7q.C18_H19_C17_C16
+C17 H20 C18 C4  improper_g7q.C17_H20_C18_C4
+
+
+; Output for residue g6q
+; Generated with gmx_add_residue.py from 'G6.ffld'
+; Date: Sat Oct  5 20:46:37 2019
+
+[ g6q ]
+[ atoms ]
+O1  g6q_O1  -0.5000 1
+C2  g6q_C2   0.5000 1
+C3  g6q_C3   0.0800 1
+N4  g6q_N4  -0.5000 1
+H5  g6q_H5   0.0600 1
+H6  g6q_H6   0.0600 1
+C7  g6q_C7   0.5000 1
+C8  g6q_C8   0.0800 1
+N9  g6q_N9  -0.5000 1
+H10 g6q_H10  0.0600 1
+H11 g6q_H11  0.0600 1
+O12 g6q_O12 -0.5000 1
+H13 g6q_H13  0.3000 1
+H14 g6q_H14  0.3000 1
+
+
+[ bonds ]
+O1  C2
+C2  C3
+C2  N9
+C3  N4
+C3  H5
+C3  H6
+N4  C7
+N4  H13
+C7  C8
+C7  O12
+C8  N9
+C8  H10
+C8  H11
+N9  H14
+
+
+[ impropers ]
+C3  N9  C2  O1  improper_g6q.C3_N9_C2_O1
+H13 C7  N4  C3  improper_g6q.H13_C7_N4_C3
+N4  C8  C7  O12 improper_g6q.N4_C8_C7_O12
+H14 C2  N9  C8  improper_g6q.H14_C2_N9_C8
+
+
+; Output for residue qq7
+; Generated with gmx_add_residue.py from 'qq7.ffld'
+; Date: Thu Apr 23 15:32:46 2020
+
+[ qq7 ]
+[ atoms ]
+C   qq7_C   -0.1150 1
+C   qq7_C   -0.1150 1
+C   qq7_C   -0.1150 1
+C   qq7_C   -0.1150 1
+C   qq7_C   -0.1150 1
+C   qq7_C   -0.1150 1
+H   qq7_H    0.1150 1
+H   qq7_H    0.1150 1
+H   qq7_H    0.1150 1
+H   qq7_H    0.1150 1
+C   qq7_C    0.5650 1
+C   qq7_C    0.5650 1
+O   qq7_O   -0.4500 1
+O   qq7_O   -0.4500 1
+H   qq7_H    0.0000 1
+H   qq7_H    0.0000 1
+
+
+[ bonds ]
+C   C
+C   C
+C   H
+C   C
+C   H
+C   C
+C   H
+C   C
+C   C
+C   C
+C   C
+C   H
+C   O
+C   H
+C   O
+C   H
+
+
+[ impropers ]
+C6  H8  C1  C2  improper_qq7.C6_H8_C1_C2
+C3  H9  C2  C1  improper_qq7.C3_H9_C2_C1
+C4  H10 C3  C2  improper_qq7.C4_H10_C3_C2
+C5  C12 C4  C3  improper_qq7.C5_C12_C4_C3
+C6  C11 C5  C4  improper_qq7.C6_C11_C5_C4
+C5  H7  C6  C1  improper_qq7.C5_H7_C6_C1
+C5  H15 C11 O13 improper_qq7.C5_H15_C11_O13
+C4  H16 C12 O14 improper_qq7.C4_H16_C12_O14
+
+
+; Output for residue qn7
+; Generated with gmx_add_residue.py from 'qn7.ffld'
+; Date: Thu Apr 23 17:36:22 2020
+
+[ qn7 ]
+[ atoms ]
+C1  qn7_C1  -0.1150 1
+C2  qn7_C2  -0.1150 1
+C3  qn7_C3  -0.1150 1
+C4  qn7_C4  -0.1150 1
+C5  qn7_C5  -0.1150 1
+C6  qn7_C6  -0.1150 1
+H7  qn7_H7   0.1150 1
+H8  qn7_H8   0.1150 1
+H9  qn7_H9   0.1150 1
+H10 qn7_H10  0.1150 1
+C11 qn7_C11  0.5650 1
+C12 qn7_C12  0.5650 1
+O13 qn7_O13 -0.4500 1
+O14 qn7_O14 -0.4500 1
+H15 qn7_H15  0.0000 1
+H16 qn7_H16  0.0000 1
+
+
+[ bonds ]
+C1  C2
+C1  C6
+C1  H8
+C2  C3
+C2  H9
+C3  C4
+C3  H10
+C4  C5
+C4  C12
+C5  C6
+C5  C11
+C6  H7
+C11 O13
+C11 H15
+C12 O14
+C12 H16
+
+
+[ impropers ]
+C6  H8  C1  C2  improper_qn7.C6_H8_C1_C2
+C3  H9  C2  C1  improper_qn7.C3_H9_C2_C1
+C4  H10 C3  C2  improper_qn7.C4_H10_C3_C2
+C5  C12 C4  C3  improper_qn7.C5_C12_C4_C3
+C6  C11 C5  C4  improper_qn7.C6_C11_C5_C4
+C5  H7  C6  C1  improper_qn7.C5_H7_C6_C1
+C5  H15 C11 O13 improper_qn7.C5_H15_C11_O13
+C4  H16 C12 O14 improper_qn7.C4_H16_C12_O14
+
+

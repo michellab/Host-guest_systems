@@ -1,0 +1,26 @@
+[ atomtypes ]
+;type      mass	       charge     ptype		sigma            epsilon
+ CH2      14.02700     0.500        A        3.80000e-01       4.940424e-01
+ CLCL2    35.45300    -0.250        A        3.40000e-01       1.256040e-00
+
+[ moleculetype ]
+; molname	nrexcl
+  CCL2		1
+
+[ atoms ]
+;   nr   type  resnr    residue  atom   cgnr     charge       mass
+     1	  CH2      1     CCL2    CT1     1       0.500      14.02700  ; qtot   0.500
+     2	 CLCL2	   1	 CCL2    Cl2     1      -0.250      35.45300  ; qtot  -0.250
+     3	 CLCL2	   1	 CCL2    Cl3     1      -0.250      35.45300  ; qtot   0.000
+     
+[ constraints ]
+;   ai   aj   funct     b0
+     1    2    	1     0.1772
+     1    3     1     0.1772
+     2    3     1     0.293499
+
+[ exclusions ]
+ 1	2	3
+ 2	1	3
+ 3	1	2
+
