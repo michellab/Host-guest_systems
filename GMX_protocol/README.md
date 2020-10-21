@@ -19,4 +19,5 @@ dt     = 0.002    ; 2 fs
 nsteps = 50000    ; 2 * 50000 = 100 ps
 dt     = 0.002    ; 2 fs
 ```
-                     
+Then BioSimSpace is used to get the amber files. 
+In order to get the MORPH.pert files for the discharge and vanish steps, we use `morph_step*.py' after we delete the SOLTY flag from SYSTEM.top
