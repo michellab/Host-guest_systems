@@ -1,0 +1,48 @@
+mkdir 0.Topology
+mkdir 1.Solvation
+mkdir 2.Minimization
+mkdir 3.NVT
+mkdir 4.NPT
+export GMXLIB=/home/sofia/Desktop/Sofia/cages/LigParGen_topol/top/
+
+cd 0.Topology
+cp ../../../../../../DMF/cage_G4/bound/0.Topology/cage_G4.pdb .
+gmx pdb2gmx -f cage_G4.pdb
+gmx editconf -f conf.gro -o conf.gro -c -box 8 8 8 -bt cubic
+gmx insert-molecules -f conf.gro -ci /home/sofia/Desktop/Sofia/cages/cage_G2/0.Topology/barf.gro -nmol 4 -o cage_barf.gro
+gmx pdb2gmx -f cage_barf.gro -o cage_barf.gro -p topol.top
+gmx editconf -f cage_barf.gro -o cage_barf.gro -c -box 8 8 8 -bt cubic
+
+cd ../1.Solvation/
+gmx solvate -cp ../0.Topology/cage_barf.gro -cs /home/sofia/Desktop/Sofia/cages/LigParGen_topol/top/oplsaa.ff/DCM.gro -o solvated.gro -p ../0.Topology/topol.top
+
+cd ../2.Minimization/
+gmx grompp -f ../../GROMACS_mdp_files/bound/min.mdp -c ../1.Solvation/solvated.gro -p ../0.Topology/topol.top -o em -maxwarn -1
+gmx mdrun -s em.tpr -deffnm minim -v
+
+
+cd ../3.NVT
+gmx make_ndx -f ../2.Minimization/minim.gro
+gmx grompp -f ../../GROMACS_mdp_files/bound/nvt.mdp -c ../2.Minimization/minim.gro -p ../0.Topology/topol.top -o nvt -n index.ndx -maxwarn -1
+gmx mdrun -s nvt.tpr -deffnm nvt -nt 10 -v
+
+cd ../4.NPT
+gmx grompp -f ../../GROMACS_mdp_files/bound/npt.mdp -c ../3.NVT/nvt.gro -p ../0.Topology/topol.top -o npt -n ../3.NVT/index.ndx -maxwarn -1
+gmx mdrun -s npt.tpr -deffnm npt -nt 10 -v
+
+mkdir ../to_amber
+cd ../to_amber
+cp ../4.NPT/npt.gro .
+cp ../0.Topology/*.itp .
+cp ../0.Topology/topol.top .
+
+~/biosimm2019.app/bin/ipython
+import BioSimSpace as BSS
+BSS.setVerbose(True)
+files = ["npt.gro","topol.top"]
+system = BSS.IO.readMolecules(files, property_map={"GROMACS_PATH" : "/home/sofia/Desktop/Sofia/cages/LigParGen_topol/top"})
+BSS.IO.saveMolecules("cage_G4-lpg", system, ["rst7", "prm7"])
+quit()
+
+mv cage_G4-lpg.prm7 SYSTEM.top
+mv cage_G4-lpg.rst7 SYSTEM.crd
