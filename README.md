@@ -1,6 +1,15 @@
 # Host-guest systems
 
-Notes: 
+Notes: The final amber files for the combined system can be found at amber_files/combined_system, after optimising the protocol to get the correct geometries for the ligands (see below for details).
+
+Protocol: 
+* host ligands: Parameters generated from LigParGen, amber files from qube_to_amber.py
+* guest: Parameters generated from LigParGen, amber files from qube_to_amber.py
+* Pd(II): Parameters generated from Macromodel, amber files from BSS conversion from gromacs files
+* barf: Parameters generated from Macromodel, amber files from BSS conversion from gromacs files
+* dichloromethane:  Parameters generated from Macromodel, amber files from BSS conversion from gromacs files
+
+The coordinates of the molecules were extracted from a solvated system using gromacs. For the LigParGen molecules (guest and host ligands), the pdb files had different atom typed, so the LigParGen pdb files were aligned with the gromacs files and the correct coordinated were saved (initial_conf_pdb_files). Then all files were converted to amber-type ones (amber_files/initial_structures) and combined to one system (amber_files/combined_system) using BSS. Then MORPH.pert files were generated for the discharge and vanish steps using morph_step*.py.  
 
 ## Conversions to amber files: 
 a) Using BSS 
