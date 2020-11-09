@@ -1,0 +1,52 @@
+# Analysing data contained in file(s) ['lambda-0.00/simfile.dat', 'lambda-0.10/simfile.dat', 'lambda-0.20/simfile.dat', 'lambda-0.30/simfile.dat', 'lambda-0.40/simfile.dat', 'lambda-0.50/simfile.dat', 'lambda-0.60/simfile.dat', 'lambda-0.70/simfile.dat', 'lambda-0.80/simfile.dat', 'lambda-0.90/simfile.dat', 'lambda-1.00/simfile.dat']
+#DG from neighbouring lambda in kcal/mol
+0.0000 0.1000 -27.6365 0.0268
+0.1000 0.2000 2.1041 0.0213
+0.2000 0.3000 3.7988 0.0195
+0.3000 0.4000 2.1518 0.0190
+0.4000 0.5000 0.5414 0.0190
+0.5000 0.6000 0.1727 0.0136
+0.6000 0.7000 0.6527 0.0118
+0.7000 0.8000 0.9340 0.0063
+0.8000 0.9000 1.6838 0.0017
+0.9000 1.0000 1.9326 0.0010
+#PMF from MBAR in kcal/mol
+0.0000 0.0000 0.0000
+0.1000 -27.6365 0.0268
+0.2000 -25.5324 0.0345
+0.3000 -21.7336 0.0399
+0.4000 -19.5818 0.0444
+0.5000 -19.0405 0.0485
+0.6000 -18.8678 0.0506
+0.7000 -18.2150 0.0522
+0.8000 -17.2811 0.0529
+0.9000 -15.5972 0.0530
+1.0000 -13.6646 0.0530
+#TI average gradients and standard deviation in kcal/mol
+0.0000 -734.2082 32.9290
+0.1000 -32.6703 27.4216
+0.2000 42.0413 26.3858
+0.3000 30.6786 25.5966
+0.4000 12.7366 25.8660
+0.5000 0.3555 24.6355
+0.6000 4.7576 17.7928
+0.7000 2.7259 11.7286
+0.8000 4.8264 7.7957
+0.9000 5.6399 8.1191
+1.0000 32.1936 54.3904
+#PMF from TI in kcal/mol
+0.0000 0.0000
+0.1000 -38.3439
+0.2000 -37.8754
+0.3000 -34.2394
+0.4000 -32.0686
+0.5000 -31.4140
+0.6000 -31.1584
+0.7000 -30.7842
+0.8000 -30.4066
+0.9000 -29.8832
+1.0000 -27.9916
+#MBAR free energy difference in kcal/mol: 
+-13.664578, 0.052980  #WARNING SUBSAMPLING DISABLED, CONSIDER RERUN WITH SUBSAMPLING OPTION
+#TI free energy difference in kcal/mol: 
+-27.991575  #WARNING SUBSAMPLING DISABLED, CONSIDER RERUN WITH SUBSAMPLING OPTION 

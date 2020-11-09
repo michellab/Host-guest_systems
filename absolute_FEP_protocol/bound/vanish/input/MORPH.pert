@@ -1,0 +1,327 @@
+version 1
+ molecule g4q
+	 atom
+	 	 name C1
+	 	 initial_type    g4q_
+		 final_type      du
+		 initial_charge  0.00000
+		 final_charge    0.00000
+		 initial_LJ      3.55000  0.07000
+		 final_LJ        0.00000  0.00000
+ 	 endatom
+	 atom
+	 	 name C2
+	 	 initial_type    g4q_
+		 final_type      du
+		 initial_charge  0.00000
+		 final_charge    0.00000
+		 initial_LJ      3.55000  0.07000
+		 final_LJ        0.00000  0.00000
+ 	 endatom
+	 atom
+	 	 name C3
+	 	 initial_type    g4q_
+		 final_type      du
+		 initial_charge  0.00000
+		 final_charge    0.00000
+		 initial_LJ      3.55000  0.07000
+		 final_LJ        0.00000  0.00000
+ 	 endatom
+	 atom
+	 	 name C4
+	 	 initial_type    g4q_
+		 final_type      du
+		 initial_charge  0.00000
+		 final_charge    0.00000
+		 initial_LJ      3.55000  0.07000
+		 final_LJ        0.00000  0.00000
+ 	 endatom
+	 atom
+	 	 name C5
+	 	 initial_type    g4q_
+		 final_type      du
+		 initial_charge  0.00000
+		 final_charge    0.00000
+		 initial_LJ      3.55000  0.07000
+		 final_LJ        0.00000  0.00000
+ 	 endatom
+	 atom
+	 	 name C6
+	 	 initial_type    g4q_
+		 final_type      du
+		 initial_charge  0.00000
+		 final_charge    0.00000
+		 initial_LJ      3.55000  0.07000
+		 final_LJ        0.00000  0.00000
+ 	 endatom
+	 atom
+	 	 name C7
+	 	 initial_type    g4q_
+		 final_type      du
+		 initial_charge  0.00000
+		 final_charge    0.00000
+		 initial_LJ      3.75000  0.10500
+		 final_LJ        0.00000  0.00000
+ 	 endatom
+	 atom
+	 	 name C8
+	 	 initial_type    g4q_
+		 final_type      du
+		 initial_charge  0.00000
+		 final_charge    0.00000
+		 initial_LJ      3.55000  0.07000
+		 final_LJ        0.00000  0.00000
+ 	 endatom
+	 atom
+	 	 name C9
+	 	 initial_type    g4q_
+		 final_type      du
+		 initial_charge  0.00000
+		 final_charge    0.00000
+		 initial_LJ      3.55000  0.07000
+		 final_LJ        0.00000  0.00000
+ 	 endatom
+	 atom
+	 	 name C10
+	 	 initial_type    g4q_
+		 final_type      du
+		 initial_charge  0.00000
+		 final_charge    0.00000
+		 initial_LJ      3.75000  0.10500
+		 final_LJ        0.00000  0.00000
+ 	 endatom
+	 atom
+	 	 name O11
+	 	 initial_type    g4q_
+		 final_type      du
+		 initial_charge  0.00000
+		 final_charge    0.00000
+		 initial_LJ      2.96000  0.20999
+		 final_LJ        0.00000  0.00000
+ 	 endatom
+	 atom
+	 	 name O12
+	 	 initial_type    g4q_
+		 final_type      du
+		 initial_charge  0.00000
+		 final_charge    0.00000
+		 initial_LJ      2.96000  0.20999
+		 final_LJ        0.00000  0.00000
+ 	 endatom
+	 atom
+	 	 name H13
+	 	 initial_type    g4q_
+		 final_type      du
+		 initial_charge  0.00000
+		 final_charge    0.00000
+		 initial_LJ      2.42000  0.03000
+		 final_LJ        0.00000  0.00000
+ 	 endatom
+	 atom
+	 	 name H14
+	 	 initial_type    g4q_
+		 final_type      du
+		 initial_charge  0.00000
+		 final_charge    0.00000
+		 initial_LJ      2.42000  0.03000
+		 final_LJ        0.00000  0.00000
+ 	 endatom
+	 atom
+	 	 name C15
+	 	 initial_type    g4q_
+		 final_type      du
+		 initial_charge  0.00000
+		 final_charge    0.00000
+		 initial_LJ      3.55000  0.07000
+		 final_LJ        0.00000  0.00000
+ 	 endatom
+	 atom
+	 	 name C16
+	 	 initial_type    g4q_
+		 final_type      du
+		 initial_charge  0.00000
+		 final_charge    0.00000
+		 initial_LJ      3.55000  0.07000
+		 final_LJ        0.00000  0.00000
+ 	 endatom
+	 atom
+	 	 name C17
+	 	 initial_type    g4q_
+		 final_type      du
+		 initial_charge  0.00000
+		 final_charge    0.00000
+		 initial_LJ      3.55000  0.07000
+		 final_LJ        0.00000  0.00000
+ 	 endatom
+	 atom
+	 	 name C18
+	 	 initial_type    g4q_
+		 final_type      du
+		 initial_charge  0.00000
+		 final_charge    0.00000
+		 initial_LJ      3.55000  0.07000
+		 final_LJ        0.00000  0.00000
+ 	 endatom
+	 atom
+	 	 name H19
+	 	 initial_type    g4q_
+		 final_type      du
+		 initial_charge  0.00000
+		 final_charge    0.00000
+		 initial_LJ      2.42000  0.03000
+		 final_LJ        0.00000  0.00000
+ 	 endatom
+	 atom
+	 	 name H20
+	 	 initial_type    g4q_
+		 final_type      du
+		 initial_charge  0.00000
+		 final_charge    0.00000
+		 initial_LJ      2.42000  0.03000
+		 final_LJ        0.00000  0.00000
+ 	 endatom
+	 atom
+	 	 name C21
+	 	 initial_type    g4q_
+		 final_type      du
+		 initial_charge  0.00000
+		 final_charge    0.00000
+		 initial_LJ      3.55000  0.07000
+		 final_LJ        0.00000  0.00000
+ 	 endatom
+	 atom
+	 	 name C22
+	 	 initial_type    g4q_
+		 final_type      du
+		 initial_charge  0.00000
+		 final_charge    0.00000
+		 initial_LJ      3.55000  0.07000
+		 final_LJ        0.00000  0.00000
+ 	 endatom
+	 atom
+	 	 name C23
+	 	 initial_type    g4q_
+		 final_type      du
+		 initial_charge  0.00000
+		 final_charge    0.00000
+		 initial_LJ      3.55000  0.07000
+		 final_LJ        0.00000  0.00000
+ 	 endatom
+	 atom
+	 	 name C24
+	 	 initial_type    g4q_
+		 final_type      du
+		 initial_charge  0.00000
+		 final_charge    0.00000
+		 initial_LJ      3.55000  0.07000
+		 final_LJ        0.00000  0.00000
+ 	 endatom
+	 atom
+	 	 name H25
+	 	 initial_type    g4q_
+		 final_type      du
+		 initial_charge  0.00000
+		 final_charge    0.00000
+		 initial_LJ      2.42000  0.03000
+		 final_LJ        0.00000  0.00000
+ 	 endatom
+	 atom
+	 	 name H26
+	 	 initial_type    g4q_
+		 final_type      du
+		 initial_charge  0.00000
+		 final_charge    0.00000
+		 initial_LJ      2.42000  0.03000
+		 final_LJ        0.00000  0.00000
+ 	 endatom
+	 atom
+	 	 name H27
+	 	 initial_type    g4q_
+		 final_type      du
+		 initial_charge  0.00000
+		 final_charge    0.00000
+		 initial_LJ      2.42000  0.03000
+		 final_LJ        0.00000  0.00000
+ 	 endatom
+	 atom
+	 	 name H28
+	 	 initial_type    g4q_
+		 final_type      du
+		 initial_charge  0.00000
+		 final_charge    0.00000
+		 initial_LJ      2.42000  0.03000
+		 final_LJ        0.00000  0.00000
+ 	 endatom
+	 atom
+	 	 name C29
+	 	 initial_type    g4q_
+		 final_type      du
+		 initial_charge  0.00000
+		 final_charge    0.00000
+		 initial_LJ      3.55000  0.07000
+		 final_LJ        0.00000  0.00000
+ 	 endatom
+	 atom
+	 	 name C30
+	 	 initial_type    g4q_
+		 final_type      du
+		 initial_charge  0.00000
+		 final_charge    0.00000
+		 initial_LJ      3.55000  0.07000
+		 final_LJ        0.00000  0.00000
+ 	 endatom
+	 atom
+	 	 name C31
+	 	 initial_type    g4q_
+		 final_type      du
+		 initial_charge  0.00000
+		 final_charge    0.00000
+		 initial_LJ      3.55000  0.07000
+		 final_LJ        0.00000  0.00000
+ 	 endatom
+	 atom
+	 	 name C32
+	 	 initial_type    g4q_
+		 final_type      du
+		 initial_charge  0.00000
+		 final_charge    0.00000
+		 initial_LJ      3.55000  0.07000
+		 final_LJ        0.00000  0.00000
+ 	 endatom
+	 atom
+	 	 name H33
+	 	 initial_type    g4q_
+		 final_type      du
+		 initial_charge  0.00000
+		 final_charge    0.00000
+		 initial_LJ      2.42000  0.03000
+		 final_LJ        0.00000  0.00000
+ 	 endatom
+	 atom
+	 	 name H34
+	 	 initial_type    g4q_
+		 final_type      du
+		 initial_charge  0.00000
+		 final_charge    0.00000
+		 initial_LJ      2.42000  0.03000
+		 final_LJ        0.00000  0.00000
+ 	 endatom
+	 atom
+	 	 name H35
+	 	 initial_type    g4q_
+		 final_type      du
+		 initial_charge  0.00000
+		 final_charge    0.00000
+		 initial_LJ      2.42000  0.03000
+		 final_LJ        0.00000  0.00000
+ 	 endatom
+	 atom
+	 	 name H36
+	 	 initial_type    g4q_
+		 final_type      du
+		 initial_charge  0.00000
+		 final_charge    0.00000
+		 initial_LJ      2.42000  0.03000
+		 final_LJ        0.00000  0.00000
+ 	 endatom
+end molecule
