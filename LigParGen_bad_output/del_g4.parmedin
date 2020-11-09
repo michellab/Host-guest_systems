@@ -1,0 +1,5 @@
+parm SYSTEM.top
+strip :1
+parmout SYSTEM_test.top
+go
+quit

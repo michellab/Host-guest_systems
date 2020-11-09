@@ -1,0 +1,327 @@
+version 1
+ molecule UNK
+    atom
+            name O00
+            initial_type    X1
+            final_type      du
+            initial_charge  0.00000
+            final_charge    0.00000
+            initial_LJ      2.96000  0.21000
+            final_LJ        0.00000  0.00000
+    endatom
+    atom
+            name C01
+            initial_type    X2
+            final_type      du
+            initial_charge  0.00000
+            final_charge    0.00000
+            initial_LJ      3.55000  0.07000
+            final_LJ        0.00000  0.00000
+    endatom
+    atom
+            name C02
+            initial_type    X3
+            final_type      du
+            initial_charge  0.00000
+            final_charge    0.00000
+            initial_LJ      3.50000  0.08000
+            final_LJ        0.00000  0.00000
+    endatom
+    atom
+            name C03
+            initial_type    X4
+            final_type      du
+            initial_charge  0.00000
+            final_charge    0.00000
+            initial_LJ      3.55000  0.07600
+            final_LJ        0.00000  0.00000
+    endatom
+    atom
+            name C04
+            initial_type    X5
+            final_type      du
+            initial_charge  0.00000
+            final_charge    0.00000
+            initial_LJ      3.50000  0.08000
+            final_LJ        0.00000  0.00000
+    endatom
+    atom
+            name C05
+            initial_type    X6
+            final_type      du
+            initial_charge  0.00000
+            final_charge    0.00000
+            initial_LJ      3.55000  0.07000
+            final_LJ        0.00000  0.00000
+    endatom
+    atom
+            name C06
+            initial_type    X7
+            final_type      du
+            initial_charge  0.00000
+            final_charge    0.00000
+            initial_LJ      3.55000  0.07000
+            final_LJ        0.00000  0.00000
+    endatom
+    atom
+            name C07
+            initial_type    X8
+            final_type      du
+            initial_charge  0.00000
+            final_charge    0.00000
+            initial_LJ      3.55000  0.07000
+            final_LJ        0.00000  0.00000
+    endatom
+    atom
+            name C08
+            initial_type    X9
+            final_type      du
+            initial_charge  0.00000
+            final_charge    0.00000
+            initial_LJ      3.55000  0.07000
+            final_LJ        0.00000  0.00000
+    endatom
+    atom
+            name C09
+            initial_type    X10
+            final_type      du
+            initial_charge  0.00000
+            final_charge    0.00000
+            initial_LJ      3.50000  0.08000
+            final_LJ        0.00000  0.00000
+    endatom
+    atom
+            name C0A
+            initial_type    X11
+            final_type      du
+            initial_charge  0.00000
+            final_charge    0.00000
+            initial_LJ      3.55000  0.07600
+            final_LJ        0.00000  0.00000
+    endatom
+    atom
+            name C0B
+            initial_type    X12
+            final_type      du
+            initial_charge  0.00000
+            final_charge    0.00000
+            initial_LJ      3.50000  0.08000
+            final_LJ        0.00000  0.00000
+    endatom
+    atom
+            name C0C
+            initial_type    X13
+            final_type      du
+            initial_charge  0.00000
+            final_charge    0.00000
+            initial_LJ      3.55000  0.07000
+            final_LJ        0.00000  0.00000
+    endatom
+    atom
+            name O0D
+            initial_type    X14
+            final_type      du
+            initial_charge  0.00000
+            final_charge    0.00000
+            initial_LJ      2.96000  0.21000
+            final_LJ        0.00000  0.00000
+    endatom
+    atom
+            name C0E
+            initial_type    X15
+            final_type      du
+            initial_charge  0.00000
+            final_charge    0.00000
+            initial_LJ      3.50000  0.08000
+            final_LJ        0.00000  0.00000
+    endatom
+    atom
+            name C0F
+            initial_type    X16
+            final_type      du
+            initial_charge  0.00000
+            final_charge    0.00000
+            initial_LJ      3.55000  0.07600
+            final_LJ        0.00000  0.00000
+    endatom
+    atom
+            name C0G
+            initial_type    X17
+            final_type      du
+            initial_charge  0.00000
+            final_charge    0.00000
+            initial_LJ      3.50000  0.08000
+            final_LJ        0.00000  0.00000
+    endatom
+    atom
+            name C0H
+            initial_type    X18
+            final_type      du
+            initial_charge  0.00000
+            final_charge    0.00000
+            initial_LJ      3.55000  0.07000
+            final_LJ        0.00000  0.00000
+    endatom
+    atom
+            name C0I
+            initial_type    X19
+            final_type      du
+            initial_charge  0.00000
+            final_charge    0.00000
+            initial_LJ      3.55000  0.07000
+            final_LJ        0.00000  0.00000
+    endatom
+    atom
+            name C0J
+            initial_type    X20
+            final_type      du
+            initial_charge  0.00000
+            final_charge    0.00000
+            initial_LJ      3.55000  0.07000
+            final_LJ        0.00000  0.00000
+    endatom
+    atom
+            name C0K
+            initial_type    X21
+            final_type      du
+            initial_charge  0.00000
+            final_charge    0.00000
+            initial_LJ      3.55000  0.07000
+            final_LJ        0.00000  0.00000
+    endatom
+    atom
+            name C0M
+            initial_type    X22
+            final_type      du
+            initial_charge  0.00000
+            final_charge    0.00000
+            initial_LJ      3.50000  0.08000
+            final_LJ        0.00000  0.00000
+    endatom
+    atom
+            name C0N
+            initial_type    X23
+            final_type      du
+            initial_charge  0.00000
+            final_charge    0.00000
+            initial_LJ      3.55000  0.07600
+            final_LJ        0.00000  0.00000
+    endatom
+    atom
+            name C0O
+            initial_type    X24
+            final_type      du
+            initial_charge  0.00000
+            final_charge    0.00000
+            initial_LJ      3.50000  0.08000
+            final_LJ        0.00000  0.00000
+    endatom
+    atom
+            name H0P
+            initial_type    X25
+            final_type      du
+            initial_charge  0.00000
+            final_charge    0.00000
+            initial_LJ      2.42000  0.03000
+            final_LJ        0.00000  0.00000
+    endatom
+    atom
+            name H0Q
+            initial_type    X26
+            final_type      du
+            initial_charge  0.00000
+            final_charge    0.00000
+            initial_LJ      2.42000  0.03000
+            final_LJ        0.00000  0.00000
+    endatom
+    atom
+            name H0R
+            initial_type    X27
+            final_type      du
+            initial_charge  0.00000
+            final_charge    0.00000
+            initial_LJ      2.42000  0.03000
+            final_LJ        0.00000  0.00000
+    endatom
+    atom
+            name H0S
+            initial_type    X28
+            final_type      du
+            initial_charge  0.00000
+            final_charge    0.00000
+            initial_LJ      2.42000  0.03000
+            final_LJ        0.00000  0.00000
+    endatom
+    atom
+            name H0T
+            initial_type    X29
+            final_type      du
+            initial_charge  0.00000
+            final_charge    0.00000
+            initial_LJ      2.42000  0.03000
+            final_LJ        0.00000  0.00000
+    endatom
+    atom
+            name H0U
+            initial_type    X30
+            final_type      du
+            initial_charge  0.00000
+            final_charge    0.00000
+            initial_LJ      2.42000  0.03000
+            final_LJ        0.00000  0.00000
+    endatom
+    atom
+            name H0V
+            initial_type    X31
+            final_type      du
+            initial_charge  0.00000
+            final_charge    0.00000
+            initial_LJ      2.42000  0.03000
+            final_LJ        0.00000  0.00000
+    endatom
+    atom
+            name H0W
+            initial_type    X32
+            final_type      du
+            initial_charge  0.00000
+            final_charge    0.00000
+            initial_LJ      2.42000  0.03000
+            final_LJ        0.00000  0.00000
+    endatom
+    atom
+            name H0X
+            initial_type    X33
+            final_type      du
+            initial_charge  0.00000
+            final_charge    0.00000
+            initial_LJ      2.42000  0.03000
+            final_LJ        0.00000  0.00000
+    endatom
+    atom
+            name H0Y
+            initial_type    X34
+            final_type      du
+            initial_charge  0.00000
+            final_charge    0.00000
+            initial_LJ      2.42000  0.03000
+            final_LJ        0.00000  0.00000
+    endatom
+    atom
+            name H0Z
+            initial_type    X35
+            final_type      du
+            initial_charge  0.00000
+            final_charge    0.00000
+            initial_LJ      2.42000  0.03000
+            final_LJ        0.00000  0.00000
+    endatom
+    atom
+            name H10
+            initial_type    X36
+            final_type      du
+            initial_charge  0.00000
+            final_charge    0.00000
+            initial_LJ      2.42000  0.03000
+            final_LJ        0.00000  0.00000
+    endatom
+end molecule
