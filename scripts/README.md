@@ -26,6 +26,7 @@ output from h-g_energies.txt:  E_{total} == -17184.8
 - **scale-charges.py**
 
 Exports a new topology file with modified charges. New charges = old_charges/ scale_constant 
+
 Usage: `python scale_charges.py  scale_constant num_of_atoms`
 
 - **calc_average_ener.py**
