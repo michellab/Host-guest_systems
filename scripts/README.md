@@ -8,10 +8,15 @@ Parameters to change are the first and the last frame of the trajectory. Ususall
 - **host-guest_ener_over_snapshots.py**
 
 Same as ener-over-snapshots.py, but with  new groups added for the calculation of the energetic contributions: 
+
 host-ions, host-ions-solvent and non_guest
+
 Other modifications: 
+
 i) solvent refers to all the solvent molecules (dichloromethane), and not to all the non-perturbed molecules as ener-over-snapshots.py does
+
 ii) to get the same total potential energy the group "non_guest" is added, that includes all the non-perturbed molecules - same as solvent of ener-over-snapshots.py
+
 Indeed the two scripts give the same total energy: 
 ```
 output from energies.txt:  E_{total} == -17184.8 
