@@ -5,7 +5,7 @@ Description of files:
 Calculates the energy components over every snapshot and writes them in a file. 
 Parameters to change are the first and the last frame of the trajectory. Ususally discard the first 20% of the frames
 
-- **host-guest_ener_over_snapshots.py **
+- **host-guest_ener_over_snapshots.py**
 
 Same as ener-over-snapshots.py, but with  new groups added for the calculation of the energetic contributions: 
 host-ions, host-ions-solvent and non_guest
