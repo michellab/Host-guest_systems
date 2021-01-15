@@ -717,17 +717,22 @@ system = createSystemFreeEnergy(molecules)
 system = setupForceFieldsFreeEnergy(system, space)
 
 # Now loop over snapshots in dcd, discard the first 20%
-start_frame = 0
-end_frame = 10
+# start_frame = 20
+# end_frame = 199
 step_frame = stepframe.val
 
 #mdtraj_top = mdtraj.load_prmtop(topfile.val)
 mdtraj_trajfile = mdtraj.open(trajfile.val,'r')
 nframes = len(mdtraj_trajfile)
+end_frame = len(mdtraj_trajfile)
 if end_frame > (nframes - 1):
     end_frame = nframes - 1
+start_frame = int(0.2*len(mdtraj_trajfile))
+# print("start_frame",start_frame)
+# print("end_frame",end_frame)
 mdtraj_trajfile.seek(start_frame)
 current_frame = start_frame
+
 
 sys_nrgs = []
 
