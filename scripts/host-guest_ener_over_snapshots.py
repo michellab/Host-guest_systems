@@ -754,9 +754,3 @@ if end_frame > (nframes - 1):
     end_frame = nframes - 1
 mdtraj_trajfile.seek(start_frame)
 current_frame = start_frame
-
-sum_sys_nrg = 0
-for i in range(1, end_frame):
-    sum_sys_nrg = sum_sys_nrg + sys_nrgs[i].value()
-avegare_sys_nrg = sum_sys_nrg/(end_frame - start_frame)
-print(avegare_sys_nrg, "kcal/mol")
