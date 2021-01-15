@@ -184,22 +184,6 @@ def createSystemFreeEnergy(molecules):
         print ("FATAL ! Could not find a solute to perturb with residue number %s in the input ! Check the value of your cfg keyword 'perturbed residue number'" % perturbed_resnum.val)
         sys.exit(-1)
 
-    #solute = moleculeList[0]
-    host_1 =  moleculeList[0]
-    host_2 =  moleculeList[1]
-    host_3 =  moleculeList[2]
-    host_4 =  moleculeList[3]
-    pd1 = moleculeList[4]
-    pd2 = moleculeList[5]
-    ion1 = moleculeList[6]
-    ion2 = moleculeList[7]
-    ion3 = moleculeList[8]
-    ion4 = moleculeList[9]
-
-    solv = []
-    for i in range(10, len(moleculeList)):
-        solv.append(moleculeList[i])
-
     lig_name = solute.residue(ResIdx(0)).name().value()
 
     solute = solute.edit().rename(lig_name).commit()
@@ -226,23 +210,27 @@ def createSystemFreeEnergy(molecules):
 
     solute_grp_ref = MoleculeGroup("solute_ref", solute)
 
-    # In [27]: type(solute_grp_ref.molecules())                                                                                
-    # Out[27]: Sire.Mol._Mol.Molecules
-
-    # In [28]: type(solute_grp_ref.molecules().first())                                                                        
-    # Out[28]: Sire.Mol._Mol.Molecule
-
     # these are empty. no molecules in the set 
     solute_grp_ref_hard = MoleculeGroup("solute_ref_hard")
     solute_grp_ref_todummy = MoleculeGroup("solute_ref_todummy")
     solute_grp_ref_fromdummy = MoleculeGroup("solute_ref_fromdummy")
 
-
     solute_ref_hard = solute.selectAllAtoms()
     solute_ref_todummy = solute_ref_hard.invert()
     solute_ref_fromdummy = solute_ref_hard.invert()
 
-    # create a new group with the host, ions and solvent
+    #solute = moleculeList[0]
+    host_1 =  moleculeList[0]
+    host_2 =  moleculeList[1]
+    host_3 =  moleculeList[2]
+    host_4 =  moleculeList[3]
+    pd1 = moleculeList[4]
+    pd2 = moleculeList[5]
+    ion1 = moleculeList[6]
+    ion2 = moleculeList[7]
+    ion3 = moleculeList[8]
+    ion4 = moleculeList[9]
+
     host1_hard = host_1.selectAllAtoms()
     host2_hard = host_2.selectAllAtoms()
     host3_hard = host_3.selectAllAtoms()
@@ -254,38 +242,57 @@ def createSystemFreeEnergy(molecules):
     ion3_hard = ion3.selectAllAtoms()
     ion4_hard = ion4.selectAllAtoms()
 
+    solv = []
+    for i in range(10, len(moleculeList)):
+        solv.append(moleculeList[i].selectAllAtoms())
 
-    # solv_hard = solv.selectAllAtoms() 
+    ions_solv = []
+    for i in range(6, len(moleculeList)):
+        ions_solv.append(moleculeList[i].selectAllAtoms())
 
-    host1_grp_hard = MoleculeGroup("host1_hard")
-    # host1_hard = host_1.selectAllAtoms()
-    host1_grp_hard.add(host1_hard)
+    host_ions_grp = MoleculeGroup("host_ions_hard")
+    host_ions_grp.add(host1_hard)
+    host_ions_grp.add(host2_hard)
+    host_ions_grp.add(host3_hard)
+    host_ions_grp.add(host4_hard)
+    host_ions_grp.add(pd1_hard)
+    host_ions_grp.add(pd2_hard)
+    host_ions_grp.add(ion1_hard)
+    host_ions_grp.add(ion2_hard)
+    host_ions_grp.add(ion3_hard)
+    host_ions_grp.add(ion4_hard)
 
-    host_ions_grp_hard = MoleculeGroup("host_ions_hard")
-    host_ions_grp_hard.add(host1_hard)
-    host_ions_grp_hard.add(host2_hard)
-    host_ions_grp_hard.add(host3_hard)
-    host_ions_grp_hard.add(host4_hard)
-    host_ions_grp_hard.add(pd1_hard)
-    host_ions_grp_hard.add(pd2_hard)
-    host_ions_grp_hard.add(ion1_hard)
-    host_ions_grp_hard.add(ion2_hard)
-    host_ions_grp_hard.add(ion3_hard)
-    host_ions_grp_hard.add(ion4_hard)
+    host_ions_solv_grp = MoleculeGroup("host_ions_solvent")
+    host_ions_solv_grp.add(host1_hard)
+    host_ions_solv_grp.add(host2_hard)
+    host_ions_solv_grp.add(host3_hard)
+    host_ions_solv_grp.add(host4_hard)
+    host_ions_solv_grp.add(pd1_hard)
+    host_ions_solv_grp.add(pd2_hard)
+    host_ions_solv_grp.add(ion1_hard)
+    host_ions_solv_grp.add(ion2_hard)
+    host_ions_solv_grp.add(ion3_hard)
+    host_ions_solv_grp.add(ion4_hard)
 
-    host_ions_solv_grp_hard = MoleculeGroup("host_ions_solvent_hard")
-    host_ions_solv_grp_hard.add(host1_hard)
-    host_ions_solv_grp_hard.add(host2_hard)
-    host_ions_solv_grp_hard.add(host3_hard)
-    host_ions_solv_grp_hard.add(host4_hard)
-    host_ions_solv_grp_hard.add(pd1_hard)
-    host_ions_solv_grp_hard.add(pd2_hard)
-    host_ions_solv_grp_hard.add(ion1_hard)
-    host_ions_solv_grp_hard.add(ion2_hard)
-    host_ions_solv_grp_hard.add(ion3_hard)
-    host_ions_solv_grp_hard.add(ion4_hard)
     for i in range (0, len(solv)):
-        host_ions_solv_grp_hard.add(solv[i]) 
+        host_ions_solv_grp.add(solv[i]) 
+
+    cage_grp = MoleculeGroup("cage")
+    cage_grp.add(host1_hard)
+    cage_grp.add(host2_hard)
+    cage_grp.add(host3_hard)
+    cage_grp.add(host4_hard)
+    cage_grp.add(pd1_hard)
+    cage_grp.add(pd2_hard)
+
+    ions_solv_grp = MoleculeGroup("ions_solvent")
+    ions_solv_grp.add(ion1_hard)
+    ions_solv_grp.add(ion2_hard)
+    ions_solv_grp.add(ion3_hard)
+    ions_solv_grp.add(ion4_hard)
+
+    for i in range (0, len(solv)):
+        ions_solv_grp.add(solv[i]) 
 
 
     to_dummies, from_dummies = getDummies(solute)
@@ -330,6 +337,7 @@ def createSystemFreeEnergy(molecules):
     # In [10]: molecules.molecules()                                                                                           
     # Out[10]: Molecules{ nMolecules() == 4436, nViews() == 4436 }
 
+    # !!!!!!! check selectallmolecules for this one!!
     for molecule in solv:
         solvent.add(molecule)
 
@@ -361,9 +369,10 @@ def createSystemFreeEnergy(molecules):
     all.add(solute_grp_ref_hard)
     all.add(solute_grp_ref_todummy)
     all.add(solute_grp_ref_fromdummy)
-    all.add(host_ions_grp_hard)
-    all.add(host_ions_solv_grp_hard)
-
+    all.add(host_ions_grp)
+    all.add(host_ions_solv_grp)
+    all.add(cage_grp)
+    all.add(ions_solv_grp)
     # Add these groups to the System
     system = System()
 
@@ -375,11 +384,14 @@ def createSystemFreeEnergy(molecules):
 
     system.add(molecules)
 
+    # new groups
     system.add(solvent)
     system.add(non_guest)
 
-    system.add(host_ions_grp_hard)
-    system.add(host_ions_solv_grp_hard)
+    system.add(host_ions_grp)
+    system.add(host_ions_solv_grp)
+    system.add(cage_grp)
+    system.add(ions_solv_grp)
 
     system.add(all)
 
@@ -406,12 +418,14 @@ def setupForceFieldsFreeEnergy(system, space):
     solute_todummy = system[MGName("solute_ref_todummy")]
     solute_fromdummy = system[MGName("solute_ref_fromdummy")]
 
-    host_ions_solv_grp_hard = system[MGName("host_ions_solvent_hard")]
-    host_ions_grp_hard = system[MGName("host_ions_hard")]
+    # new groups
+    host_ions_solv_grp = system[MGName("host_ions_solvent")]
+    host_ions_grp = system[MGName("host_ions_hard")]
+    cage_grp = system[MGName("cage")]
 
     solvent = system[MGName("solvent")]
     non_guest = system[MGName("non_guest")]
-
+    ions_solv_grp = system[MGName("ions_solvent")]
 
     all = system[MGName("all")]
 
@@ -428,11 +442,19 @@ def setupForceFieldsFreeEnergy(system, space):
 
     # host and ions  bond, angle, dihedral energy
     host_ions_intraff = InternalFF("host_ions_intraff")
-    host_ions_intraff.add(host_ions_grp_hard)
+    host_ions_intraff.add(host_ions_grp)
 
     # host, ions and solvent bond, angle, dihedral energy
     host_ions_solvent_intraff = InternalFF("host_ions_solvent_intraff")
-    host_ions_solvent_intraff.add(host_ions_solv_grp_hard)
+    host_ions_solvent_intraff.add(host_ions_solv_grp)
+
+    # cage bond, angle, dihedral energy
+    cage_intraff = InternalFF("cage_intraff")
+    cage_intraff.add(cage_grp)
+
+    ions_solv_intraff = InternalFF("ions_solv_intraff")
+    ions_solv_intraff.add(ions_solv_grp)
+
 
     # Solvent-solvent coulomb/LJ (CLJ) energy
     solventff = InterCLJFF("solvent:solvent")
@@ -467,14 +489,14 @@ def setupForceFieldsFreeEnergy(system, space):
     if (cutoff_type.val != "nocutoff"):
         host_ions_solvent_hard_intraclj.setUseReactionField(True)
         host_ions_solvent_hard_intraclj.setReactionFieldDielectric(rf_dielectric.val)
-    host_ions_solvent_hard_intraclj.add(host_ions_solv_grp_hard)
+    host_ions_solvent_hard_intraclj.add(host_ions_solv_grp)
 
     # host, ions intramolecular CLJ energy
     host_ions_hard_intraclj = IntraCLJFF("host_ions_hard_intraclj")
     if (cutoff_type.val != "nocutoff"):
         host_ions_hard_intraclj.setUseReactionField(True)
         host_ions_hard_intraclj.setReactionFieldDielectric(rf_dielectric.val)
-    host_ions_hard_intraclj.add(host_ions_grp_hard)
+    host_ions_hard_intraclj.add(host_ions_grp)
 
     # Solute intramolecular CLJ energy
     solute_hard_intraclj = IntraCLJFF("solute_hard_intraclj")
@@ -527,26 +549,26 @@ def setupForceFieldsFreeEnergy(system, space):
     solute_todummy_fromdummy_intraclj.add(solute_fromdummy, MGIdx(1))
 
     #Solute-guest, ions, solvent  CLJ energy
-    solute_guest_ions_solvent_hard_solventff = InterGroupCLJFF("solute_hard:guest-ions-solvent")
+    solute_host_ions_solvent_hard_solventff = InterGroupCLJFF("solute_hard:host-ions-solvent")
     if (cutoff_type.val != "nocutoff"):
-        solute_guest_ions_solvent_hard_solventff.setUseReactionField(True)
-        solute_guest_ions_solvent_hard_solventff.setReactionFieldDielectric(rf_dielectric.val)
-    solute_guest_ions_solvent_hard_solventff.add(solute_hard, MGIdx(0))
-    solute_guest_ions_solvent_hard_solventff.add(host_ions_solv_grp_hard , MGIdx(1))
+        solute_host_ions_solvent_hard_solventff.setUseReactionField(True)
+        solute_host_ions_solvent_hard_solventff.setReactionFieldDielectric(rf_dielectric.val)
+    solute_host_ions_solvent_hard_solventff.add(solute_hard, MGIdx(0))
+    solute_host_ions_solvent_hard_solventff.add(host_ions_solv_grp , MGIdx(1))
 
-    solute_guest_ions_solvent_todummy_solventff = InterGroupSoftCLJFF("solute_todummy:guest-ions-solvent")
+    solute_host_ions_solvent_todummy_solventff = InterGroupSoftCLJFF("solute_todummy:host-ions-solvent")
     if (cutoff_type.val != "nocutoff"):
-        solute_guest_ions_solvent_todummy_solventff.setUseReactionField(True)
-        solute_guest_ions_solvent_todummy_solventff.setReactionFieldDielectric(rf_dielectric.val)
-    solute_guest_ions_solvent_todummy_solventff.add(solute_todummy, MGIdx(0))
-    solute_guest_ions_solvent_todummy_solventff.add(host_ions_solv_grp_hard, MGIdx(1))
+        solute_host_ions_solvent_todummy_solventff.setUseReactionField(True)
+        solute_host_ions_solvent_todummy_solventff.setReactionFieldDielectric(rf_dielectric.val)
+    solute_host_ions_solvent_todummy_solventff.add(solute_todummy, MGIdx(0))
+    solute_host_ions_solvent_todummy_solventff.add(host_ions_solv_grp, MGIdx(1))
 
-    solute_guest_ions_solvent_fromdummy_solventff = InterGroupSoftCLJFF("solute_fromdummy:guest-ions-solvent")
+    solute_host_ions_solvent_fromdummy_solventff = InterGroupSoftCLJFF("solute_fromdummy:host-ions-solvent")
     if (cutoff_type.val != "nocutoff"):
-        solute_guest_ions_solvent_fromdummy_solventff.setUseReactionField(True)
-        solute_guest_ions_solvent_fromdummy_solventff.setReactionFieldDielectric(rf_dielectric.val)
-    solute_guest_ions_solvent_fromdummy_solventff.add(solute_fromdummy, MGIdx(0))
-    solute_guest_ions_solvent_fromdummy_solventff.add(host_ions_solv_grp_hard, MGIdx(1))
+        solute_host_ions_solvent_fromdummy_solventff.setUseReactionField(True)
+        solute_host_ions_solvent_fromdummy_solventff.setReactionFieldDielectric(rf_dielectric.val)
+    solute_host_ions_solvent_fromdummy_solventff.add(solute_fromdummy, MGIdx(0))
+    solute_host_ions_solvent_fromdummy_solventff.add(host_ions_solv_grp, MGIdx(1))
 
     #Solute-solvent CLJ energy
     solute_hard_solventff = InterGroupCLJFF("solute_hard:solvent")
@@ -592,20 +614,45 @@ def setupForceFieldsFreeEnergy(system, space):
     solute_fromdummy_non_guestff.add(solute_fromdummy, MGIdx(0))
     solute_fromdummy_non_guestff.add(non_guest, MGIdx(1))
 
+    #guest-cage CLJ energy
+    solute_hard_cageff = InterGroupCLJFF("solute_hard:cage")
+    if (cutoff_type.val != "nocutoff"):
+        solute_hard_cageff.setUseReactionField(True)
+        solute_hard_cageff.setReactionFieldDielectric(rf_dielectric.val)
+    solute_hard_cageff.add(solute_hard, MGIdx(0))
+    solute_hard_cageff.add(cage_grp, MGIdx(1))
+
+    #guest-cage CLJ energy
+    solute_hard_ions_solvff = InterGroupCLJFF("solute_hard:ions_solvent")
+    if (cutoff_type.val != "nocutoff"):
+        solute_hard_ions_solvff.setUseReactionField(True)
+        solute_hard_ions_solvff.setReactionFieldDielectric(rf_dielectric.val)
+    solute_hard_ions_solvff.add(solute_hard, MGIdx(0))
+    solute_hard_ions_solvff.add(ions_solv_grp, MGIdx(1))
+
+    #cage solvent ions CLJ energy
+    cage_ions_solvff = InterGroupCLJFF("cage:ions_solvent")
+    if (cutoff_type.val != "nocutoff"):
+        cage_ions_solvff.setUseReactionField(True)
+        cage_ions_solvff.setReactionFieldDielectric(rf_dielectric.val)
+    cage_ions_solvff.add(cage_grp, MGIdx(0))
+    cage_ions_solvff.add(ions_solv_grp, MGIdx(1))
+
 
     # TOTAL
     forcefields = [solute_intraff,
                    solute_hard_intraclj, solute_todummy_intraclj, solute_fromdummy_intraclj,
                    host_ions_solvent_hard_intraclj, solute_hard_todummy_intraclj,
                     solute_hard_fromdummy_intraclj, solute_todummy_fromdummy_intraclj,
-                   solute_guest_ions_solvent_hard_solventff, solute_guest_ions_solvent_fromdummy_solventff,
-                   solute_guest_ions_solvent_todummy_solventff, host_ions_hard_intraclj,
+                   solute_host_ions_solvent_hard_solventff, solute_host_ions_solvent_fromdummy_solventff,
+                   solute_host_ions_solvent_todummy_solventff, host_ions_hard_intraclj,
                    solvent_intraff,
                    solventff, solvent_intraclj,
                    solute_hard_solventff, solute_todummy_solventff, solute_fromdummy_solventff,
                    non_guest_intraff,
                    non_guestff, non_guest_intraclj,
-                   solute_hard_non_guestff, solute_todummy_non_guestff, solute_fromdummy_non_guestff]
+                   solute_hard_non_guestff, solute_todummy_non_guestff, solute_fromdummy_non_guestff, 
+                   solute_hard_ions_solvff, solute_hard_cageff, cage_ions_solvff]
 
 
     for forcefield in forcefields:
