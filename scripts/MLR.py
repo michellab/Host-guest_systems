@@ -159,6 +159,119 @@ def sol_sol_C():
     return(avg)
 
 
+
+def sol_intra_LJ(): 
+    solv_intra_LJ = []
+    count = 0
+    iname=("h-g_energies.txt")
+    ener_list = []
+    with open(iname) as infile:
+        lines = infile.readlines()
+        for line in lines:
+            for i in range (0, len(line.split()) ):
+                if line.split()[i] == "E_{solvent_intraclj}^{LJ}":
+                    solv_intra_LJ.append(line.split()[i+2].strip(","))
+                    entry = float(line.split()[i+2].strip(","))
+                    count = count + entry
+    # print ("solv_intra_LJ = ",solv_intra_LJ)
+    avg = count/len(solv_intra_LJ)
+    print("Average E_{solvent_intraclj}^{LJ} = ", avg)
+    return(avg)
+
+       
+def sol_intra_C(): 
+    solv_intra_C = []
+    count = 0
+    iname=("h-g_energies.txt")
+    ener_list = []
+    with open(iname) as infile:
+        lines = infile.readlines()
+        for line in lines: 
+            for i in range (0, len(line.split()) ):
+                if line.split()[i] == "E_{solvent_intraclj}^{coulomb}":
+                    solv_intra_C.append(line.split()[i+2].strip(","))
+                    entry = float(line.split()[i+2].strip(","))
+                    count = count + entry
+    # print ("solv_intra_C = ",solv_intra_C)
+    avg = count/len(solv_intra_C)
+    print("Average E_{solvent_intraclj}^{coulomb} = ", avg)
+    return(avg)
+
+    
+def sol_cage_C(): 
+    solv_intra_C = []
+    count = 0
+    iname=("h-g_energies.txt")
+    ener_list = []
+    with open(iname) as infile:
+        lines = infile.readlines()
+        for line in lines: 
+            for i in range (0, len(line.split()) ):
+                if line.split()[i] == "E_{solute_hard:cage}^{coulomb}":
+                    solv_intra_C.append(line.split()[i+2].strip(","))
+                    entry = float(line.split()[i+2].strip(","))
+                    count = count + entry
+    # print ("solv_intra_C = ",solv_intra_C)
+    avg = count/len(solv_intra_C)
+    print("Average E_{solute_hard:cage}^{coulomb} = ", avg)
+    return(avg)
+
+    
+def sol_cage_LJ(): 
+    solv_intra_C = []
+    count = 0
+    iname=("h-g_energies.txt")
+    ener_list = []
+    with open(iname) as infile:
+        lines = infile.readlines()
+        for line in lines: 
+            for i in range (0, len(line.split()) ):
+                if line.split()[i] == "E_{solute_hard:cage}^{LJ}":
+                    solv_intra_C.append(line.split()[i+2].strip(","))
+                    entry = float(line.split()[i+2].strip(","))
+                    count = count + entry
+    # print ("solv_intra_C = ",solv_intra_C)
+    avg = count/len(solv_intra_C)
+    print("Average E_{solute_hard:cage}^{LJ} = ", avg)
+    return(avg)
+    
+def sol_non_guest_C(): 
+    solv_intra_C = []
+    count = 0
+    iname=("h-g_energies.txt")
+    ener_list = []
+    with open(iname) as infile:
+        lines = infile.readlines()
+        for line in lines: 
+            for i in range (0, len(line.split()) ):
+                if line.split()[i] == "E_{solute_hard:non_guest}^{coulomb}":
+                    solv_intra_C.append(line.split()[i+2].strip(","))
+                    entry = float(line.split()[i+2].strip(","))
+                    count = count + entry
+    # print ("solv_intra_C = ",solv_intra_C)
+    avg = count/len(solv_intra_C)
+    print("Average E_{solute_hard:non_guest}^{coulomb} = ", avg)
+    return(avg)
+
+    
+def sol_non_guest_LJ(): 
+    solv_intra_C = []
+    count = 0
+    iname=("h-g_energies.txt")
+    ener_list = []
+    with open(iname) as infile:
+        lines = infile.readlines()
+        for line in lines: 
+            for i in range (0, len(line.split()) ):
+                if line.split()[i] == "E_{solute_hard:non_guest}^{LJ}":
+                    solv_intra_C.append(line.split()[i+2].strip(","))
+                    entry = float(line.split()[i+2].strip(","))
+                    count = count + entry
+    # print ("solv_intra_C = ",solv_intra_C)
+    avg = count/len(solv_intra_C)
+    print("Average E_{solute_hard:non_guest}^{LJ} = ", avg)
+    return(avg)
+
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 cage_in_solvent_elec = -68.6378272
@@ -167,6 +280,8 @@ cage_in_solvent_LJ = -32.384
 
 list_E_free_C = []
 list_E_free_LJ = []
+list_E_bound_C = []
+list_E_bound_LJ = []
 
 print("---------------- Cage G1 ----------------")
 
@@ -196,11 +311,8 @@ print("list_E_free_LJ= ", list_E_free_LJ)
 
 print("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
 
-os.chdir('/media/sofia/LACIE SHARE/3rd_year/final_cages_files/plato_FEP/cage_G1/free/discharge/output/lambda-0.00')
+os.chdir('/media/sofia/LACIE SHARE/3rd_year/final_cages_files/plato_FEP/cage_G1/bound/discharge/output/lambda-0.00')
 print("working direcory =", os.getcwd())
-list_E_bound_C = []
-list_E_bound_LJ = []
-
 
 hard_sol_Coul =hard_sol_C()
 hard_intraCoul = hard_intraC()
@@ -223,7 +335,7 @@ list_E_bound_LJ.append(E_bound_LJ)
 print("list_E_bound_C= ", list_E_bound_C)
 print("list_E_bound_LJ= ", list_E_bound_LJ)
 
-os.chdir( '/media/sofia/LACIE SHARE/3rd_year/final_cages_files/plato_FEP/cage_G2/original/bound/discharge/output/lambda-0.00')
+os.chdir( '/media/sofia/LACIE SHARE/3rd_year/final_cages_files/plato_FEP/cage_G2/original/free/discharge/output/lambda-0.00')
 
 print("---------------- Cage G2 ----------------")
 
@@ -252,7 +364,7 @@ print("list_E_free_LJ= ", list_E_free_LJ)
 
 print("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
 
-os.chdir( '/media/sofia/LACIE SHARE/3rd_year/final_cages_files/plato_FEP/cage_G2/original/free/discharge/output/lambda-0.00')
+os.chdir( '/media/sofia/LACIE SHARE/3rd_year/final_cages_files/plato_FEP/cage_G2/original/bound/discharge/output/lambda-0.00')
 print("working direcory =", os.getcwd())
 
 hard_sol_Coul =hard_sol_C()
@@ -607,7 +719,7 @@ for i in range(0,len(list_E_bound_C)):
     diff_LJ.append(list_E_bound_LJ[i] - list_E_free_LJ[i])
 
 
-exper = [-7.51, -5.23, -10.41 ,-12.06 ,-10.41, -5.40 ,-3.62, -3.46]
+exper = [ -7.51,  -5.23 ,-10.41 ,-12.06, -10.41  ,-5.40, -3.62]
 ddg_mod_char2 = [-11.95 ,-13.78 ,-5.90 ,-2.64 ,-1.41 ,-16.02 ,-9.79 ,-6.48]
 target = pd.DataFrame(ddg_mod_char2, columns = ["DDG"])
 experiment = pd.DataFrame(exper, columns = ["DDG"])
@@ -641,5 +753,10 @@ for i in range (0, len(list_E_bound_LJ)):
     pred = elec_b_coef*list_E_bound_C[i] + LJ_b_coef* list_E_bound_LJ[i]  +elec_f_coef*list_E_free_C[i] + LJ_f_coef* list_E_free_LJ[i] +constant
     predicted_bound_DDG.append(pred)
 
-df_res_bound = pd.DataFrame({"Experimenal": ddg_mod_char2, "Predicted": predicted_bound_DDG})
-print(df_res_bound )
+df_res = pd.DataFrame({"Experimental": exper, "Predicted": predicted_bound_DDG})
+print(df_res)
+
+diff = df_res["Experimental"] -df_res["Predicted"]
+print("Differences: ")
+print("------------")
+print(diff)
